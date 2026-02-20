@@ -1,308 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbhiShek Shah | AI Engineer & Project Manager</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>AbhiShek Shah Portfolio</title>
+</head>
+<body>
+    <!-- Neural Network Canvas -->
+    <canvas id="neural-canvas"></canvas>
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
+            </a>
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-        <script src="https://kit.fontawesome.com/9cdfc5bcd9.js" crossorigin="anonymous"></script>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <title>AbhiShek Shah Portfolio</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">AbhiShek Shah.</a>
-                </div>
-
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#achievements" class="nav__link">Achievements</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                        <li class="nav__item"><a href="https://abhishekshahhtmlresume.vercel.app" target="_blank" class="nav__link">Resume</a></li>
-                    </ul>
-                </div>
-
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
-
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">AbhiShek Shah</span><br> ML/ AI Engineer</h1>
-
-                    <a href="#" class="button">Contact</a>
-                </div>
-
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/theabhishekshah/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://www.facebook.com/1lord001" class="home__social-icon"><i class='bx bxl-facebook' ></i></a>
-                    <a href="https://www.instagram.com/i_abhiverse/" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
-
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="10" href="assets/img/blacktshirtabhibg.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
-
-            <!--===== ABOUT =====-->
-            <section class="about section" id="about">
-                <h2 class="section-title">About</h2>
-
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/abhiprophoto.png" alt="AbhiShek Shah">
-                    </div>
-        
-                    <div>
-                        <h2 class="about__subtitle">I'm AbhiShek</h2>
-                        <p class="about__text">I'm a full stack Python developer with a strong background in Machine Learning. I currently work as a Machine Learning Engineer, where I develop advanced AI solutions. My passion for how machines can interpret data has driven me to continuously expand my knowledge and skills in this field.</p>           
-                        <p class="about__text">With a deep understanding of Python, JavaScript, and modern web technologies, I have successfully delivered numerous projects. I am particularly interested in Natural Language Processing (NLP) and Large Language Models (LLMs).</p>
-                        <p class="about__text">Feel free to connect with me on <a href="https://www.linkedin.com/in/abhiverse01/" target="_blank">LinkedIn</a> or check out my projects on <a href="https://github.com/abhiverse01" target="_blank">GitHub</a>.</p>
-                    </div>                                   
-                </div>
-            </section>
-
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
-
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Professional Skills</h2>
-                        <p class="skills__text">Full Stack Python Dev | JS | ML Engineer | AI | NLP | LLMs</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='fab fa-python skills__icon'></i>
-                                <span class="skills__name">Python Dev</span>
-                            </div>
-                            <div class="skills__bar skills__html" data-width="95%"></div>
-                            <div>
-                                <span class="skills__percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='fas fa-brain skills__icon'></i>
-                                <span class="skills__name">ML Engineer / Data Analytics</span>
-                            </div>
-                            <div class="skills__bar skills__css" data-width="85%"></div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon'></i>
-                                <span class="skills__name">JavaScript</span>
-                            </div>
-                            <div class="skills__bar skills__js" data-width="65%"></div>
-                            <div>
-                                <span class="skills__percentage">65%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">UX/UI</span>
-                            </div>
-                            <div class="skills__bar skills__ux" data-width="45%"></div>
-                            <div>
-                                <span class="skills__percentage">45%</span>
-                            </div>
-                        </div>
-                    </div>   
-                    <div>              
-                        <img src="assets/img/build--product.png" alt="Product Build" class="skills__img">
-                    </div>
-                </div>
-            </section>
-
-
-
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Work</h2>
-
-                <p class="work__intro">Here are some of the projects I have worked on, showcasing my experience and skills in machine learning, software development, and deployment.</p>
-
-                <div class="work__container bd-grid">
-                    <!-- Card 1 -->
-                    <div class="work__card">
-                        <div class="work__logo">CS</div>
-                        <h3 class="work__title">CODSOFT</h3>
-                        <p class="work__description">Contains four ML Projects that I've worked on for my internship at CODSOFT.</p>
-                        <a href="https://github.com/abhiverse01/CODSOFT" class="work__link" target="_blank">View on GitHub</a>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="work__card">
-                        <div class="work__logo">CC</div>
-                        <h3 class="work__title">CNN Binary & Multi-Class Classification</h3>
-                        <p class="work__description">Contains my project code for two CNN models, one for binary classification while the other for multi-class classification, utilizing the CIFAR-10 dataset.</p>
-                        <a href="https://github.com/abhiverse01/CNN-Model-for-Binary-Multi-Class-Classification-using-CIFAR-10-Dataset" class="work__link" target="_blank">View on GitHub</a>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="work__card">
-                        <div class="work__logo">PC</div>
-                        <h3 class="work__title">Project Codebeing</h3>
-                        <p class="work__description">This is my college major project. I've trained a LLama model for code generation capabilities and deployed it using a React-based website on Vercel.</p>
-                        <div class="work__links">
-                            <a href="https://github.com/abhiverse01/project-codebeing" class="work__link" target="_blank">View on GitHub</a>
-                            <a href="https://projectcodebeing.vercel.app" class="work__link work__link--live" target="_blank">
-                                <i class="fas fa-eye"></i> Live
-                            </a>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Card 4 -->
-                    <div class="work__card">
-                        <div class="work__logo">SP</div>
-                        <h3 class="work__title">Software Dev-Salary Prediction</h3>
-                        <p class="work__description">In this project, I've created a fully functional ML-based salary prediction web app and deployed it using Streamlit.</p>
-                        <a href="https://github.com/abhiverse01/SoftwareDev-Salary-Prediction" class="work__link" target="_blank">View on GitHub</a>
-                    </div>
-
-                    <!-- GitHub Profile Link -->
-                    <div class="work__more">
-                        <a href="https://github.com/abhiverse01?tab=repositories" class="work__profile-link" target="_blank">
-                            <i class="fab fa-github work__profile-logo"></i>
-                            <span>For more, check out my GitHub profile</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-
-            <!--===== ACHIEVEMENTS =====-->
-            <section class="work section" id="achievements">
-                <h2 class="section-title">Achievements</h2>
-
-                <div class="work__container bd-grid">
-                    <!-- Card 1 -->
-                    <div class="work__card">
-                        <i class="fas fa-brain skills__icon"></i>
-                        <h3 class="work__title">Machine Learning Intern</h3>
-                        <p class="work__description">I was certified for successfully comopleting all the tasks given to me during my Internship tenure at CodSoft. </p>
-                        <a href="https://arwazkolkata9-dot-valid-gizmo-404515.uc.r.appspot.com/?c=1daTsg4Ppp7Z0bEHvZlQi6E6BZ0rKiHGZYzzvMrVIeO8&q=828990538&r=18be3e07254702df&z=1700335219525&o=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F197qwwvj_E_mDjTBOkJ9ZaQdeQEnfg_we%2Fview%3Fusp%3Ddrivesdk" class="work__link">View on LinkedIn</a>
-                    </div>
-        
-                    <!-- Card 2 -->
-                    <div class="work__card">
-                        <i class="fas fa-certificate skills__icon"></i>
-                        <h3 class="work__title">Python Programming - From Basics to Advanced Level</h3>
-                        <p class="work__description">I was certiified for successfully completing all the tasks and learning materials related to advanced concepts of Python Programming.</p>
-                        <a href="https://www.udemy.com/certificate/UC-4dc55380-13e1-4120-adbc-e5a6baed124f/" class="work__link">View on LinkedIn</a>
-                    </div>
-
-                    <!-- Card 3 -->>
-                    <div class="work__card">
-                        <i class="fas fa-certificate skills__icon"></i>
-                        <h3 class="work__title">AI/ML Mentorship Recognition</h3>
-                        <p class="work__description">I was awarded this mentorship recognition from my college for working as a ML Mentor during ML training for a week held by ACES.</p>
-                        <a href="https://www.linkedin.com/in/abhiverse01/details/certifications/1704879330972/single-media-viewer?type=IMAGE&profileId=ACoAADizU0QBVMhFLFWnzMpUfCRkgkrHiEnMPtk&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BomoNmrwpSxeQI8AGw53VQA%3D%3D" class="work__link">View on LinkedIn</a>
-                    </div>
-
-                    <!-- Card 4 -->>
-                    <div class="work__card">
-                        <i class="fas fa-certificate skills__icon"></i>
-                        <h3 class="work__title">Expert-Level Typing</h3>
-                        <p class="work__description">I was awarded the expert level typing accolade for successful passing the expert typing test with an avg.speed of 70wpm and accuracy of 90%.</p>
-                        <a href="https://www.typing.com/student/verify#256049629-118126774" class="work__link">View on LinkedIn</a>
-                    </div>
-
-                    <div class="work__card">
-                        <i class="fas fa-certificate skills__icon"></i>
-                        <h3 class="work__title">Exploring Docker</h3>
-                        <p class="work__description">I was awarded this certification after successfully completing all the tasks and study materials related to Learning Docker. </p>
-                        <a href="https://www.mindluster.com/student/certificate/13907665933" class="work__link">View on LinkedIn</a>
-                    </div>
-
-                    <div class="work__card">
-                        <i class="fas fa-certificate skills__icon"></i>
-                        <h3 class="work__title">PyScript Fundamentals</h3>
-                        <p class="work__description">I was awarded this certification after successfully completing all the tasks and study materials related to PyScript Fundamentals. This is an effective method for effecient web apps. </p>
-                        <a href="https://www.mindluster.com/student/certificate/13907665933" class="work__link">View on LinkedIn</a>
-                    </div>
-
-                    
-        
-                    <!-- More Cards for Project 3 and 4 here -->
-        
-                    <!-- GitHub Profile Link -->
-                    <div class="work__more">
-                        <a href="https://www.linkedin.com/in/abhiverse01/details/certifications/" class="work__profile-link">
-                            <i class="fab fa-linkedin work__profile-logo"></i>
-                            <span>For more, check out my LinkedIn profile</span>
-                        </a>
-                    </div>
-
-                    
-                </div>
-            </section>
-
-
-            <!--===== CONTACT =====-->
-            
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
-
-                <div class="contact__container bd-grid">
-                    <div class="contact__content">
-                        <div class="contact__info">
-                            <p>If you have any questions or just want to say hello, feel free to mail me! would love to hear from ya :)</p>
-                        
-                            <a href="mailto:www.abhishekshah007@gmail.com?subject=Hello from Website Visitor&body=Hi AbhiShek," class="contact__button button">Mail me > www.abhishekshah007@gmail.com</a>
-                        </div>
-                        <div class="contact__image">
-                            <img src="assets/img/support.png" alt="A Beautiful Image" style="max-width:100%;height:auto;">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">AbhiShek Shah.</p>
-            <div class="footer__social">
-                <a href="https://www.facebook.com/1lord001" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="https://www.instagram.com/i_abhiverse/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="https://www.linkedin.com/in/abhiverse01/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="https://abhishekshahhtmlresume.vercel.app" target="_blank" class="btn btn-primary btn-small">Resume</a>
             </div>
-            <p class="footer__copy">&#169; 2024 AbhiShek Shah. All rights reserved</p>
-        </footer>
+        </nav>
+    </header>
 
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-label reveal">
+                    <span>Available for opportunities</span>
+                </div>
+                
+                <h1 class="hero-title reveal">
+                    Hi, I'm <span class="name-highlight" id="name-highlight">AbhiShek Shah</span><br>
+                    <span id="typing-container">AI Engineer</span><span class="typing-text"></span>
+                </h1>
+                
+                <p class="hero-subtitle reveal">
+                    Software Engineer with 4+ years of experience in Machine Learning, LLMs, Data Science, and Python Full Stack Development. Building intelligent systems that solve real-world problems.
+                </p>
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+                <div class="hero-cta reveal">
+                    <a href="#contact" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        Get in Touch
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                        View Projects
+                    </a>
+                </div>
+
+                <div class="hero-stats reveal">
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="4">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="30">0</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" data-target="15">0</div>
+                        <div class="stat-label">ML Models Deployed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="section-header reveal">
+                <div class="section-label">// About Me</div>
+                <h2 class="section-title">Engineering Intelligent Solutions</h2>
+                <p class="section-desc">Passionate about transforming data into actionable insights and building AI systems that make a difference.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="about-image-frame">
+                        <div class="about-image-placeholder">
+                            <div class="avatar-circle">
+                                <span class="avatar-initials">AS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-credentials">
+                        <div class="credential-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            <span>NEC Registered</span>
+                        </div>
+                        <div class="credential-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                            <span>Computer Engineer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-content reveal">
+                    <h3>Building the Future with AI</h3>
+                    <p>
+                        I'm a Computer Engineering graduate from Tribhuvan University (IOE, ERC, Class of 2019) and a registered engineer with the Nepal Engineering Council (2025). Currently serving as an AI Engineer & Team Lead at Inflancer Technology while also taking on Project Management responsibilities.
+                    </p>
+                    <p>
+                        My expertise spans the full spectrum of AI/ML development—from building Recommender Systems and deploying scalable AI solutions on cloud infrastructure, to fine-tuning Large Language Models for specialized applications. I bridge the gap between cutting-edge research and production-ready systems.
+                    </p>
+                    <p>
+                        Beyond AI, I've developed numerous Python applications, games, and tools including PySnake, BlackJack, and various GUI applications. I've also built interactive web games using HTML, CSS, and JavaScript. Currently researching ActFormers—modifying transformers to predict actions rather than just tokens.
+                    </p>
+
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                            <div class="highlight-text">
+                                <strong>LLMs & NLP</strong>
+                                <p>Fine-tuning & deployment</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                <line x1="9" y1="21" x2="9" y2="9"/>
+                            </svg>
+                            <div class="highlight-text">
+                                <strong>Project Management</strong>
+                                <p>Agile methodologies</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                            <div class="highlight-text">
+                                <strong>Cloud & DevOps</strong>
+                                <p>Docker, Kubernetes</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                            <div class="highlight-text">
+                                <strong>Game Development</strong>
+                                <p>Python & Web Games</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section section-alt" id="experience">
+            <div class="section-header reveal">
+                <div class="section-label">// Experience</div>
+                <h2 class="section-title">Professional Journey</h2>
+                <p class="section-desc">From freelance development to leading AI initiatives—building systems that scale.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">April 2024 - Present</div>
+                        <h3 class="timeline-title">AI Engineer & Team Lead</h3>
+                        <div class="timeline-company">Inflancer Technology, Kathmandu</div>
+                        <p class="timeline-desc">Leading AI initiatives including Recommender Systems, NLP-based intelligent search, and scalable cloud AI deployments using Docker and Kubernetes.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LLMs</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Kafka</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Oct 2024 - Present</div>
+                        <h3 class="timeline-title">Project Manager</h3>
+                        <div class="timeline-company">Inflancer Technology, Kathmandu</div>
+                        <p class="timeline-desc">Driving projects using agile methodologies, ensuring timely delivery through team management, risk mitigation, and stakeholder coordination.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Agile</span>
+                            <span class="tag">Leadership</span>
+                            <span class="tag">Stakeholder Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">2019 - 2024</div>
+                        <h3 class="timeline-title">ML Researcher & Engineer</h3>
+                        <div class="timeline-company">ResearchGrad, Freelance</div>
+                        <p class="timeline-desc">Contributed to research on Nepali Music Genre Classification and Multi-modal Hate Speech Detection. Fine-tuned Llama-2 for code generation.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">2019 - Present</div>
+                        <h3 class="timeline-title">Python Developer & Game Developer</h3>
+                        <div class="timeline-company">Freelance, Nepal</div>
+                        <p class="timeline-desc">Developed diverse Python applications including Library Manager, Ticket Generator, and various tools using Tkinter and PyQt. Created games like PySnake, BlackJack, Pong, and Space-Sim. Also built interactive web games using HTML, CSS, and JavaScript.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">PyGame</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">GUI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Oct - Nov 2023</div>
+                        <h3 class="timeline-title">ML Intern</h3>
+                        <div class="timeline-company">Codsoft, Bangalore</div>
+                        <p class="timeline-desc">Built ML models for fraud detection, churn prediction, and spam classification with up to 98% accuracy. Applied SMOTE for imbalanced data handling.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Feature Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="section-header reveal">
+                <div class="section-label">// Skills</div>
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-desc">Technologies and tools I use to bring ideas to life.</p>
+            </div>
+
+            <div class="skills-container">
+                <div class="skills-categories reveal">
+                    <button class="skill-category-btn active" data-category="all">All</button>
+                    <button class="skill-category-btn" data-category="ml">ML/AI</button>
+                    <button class="skill-category-btn" data-category="dev">Development</button>
+                    <button class="skill-category-btn" data-category="cloud">Cloud/DevOps</button>
+                </div>
+
+                <div class="skills-grid reveal" id="skills-grid">
+                    <!-- Skills populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section section-alt" id="projects">
+            <div class="section-header reveal">
+                <div class="section-label">// Projects</div>
+                <h2 class="section-title">Featured Work</h2>
+                <p class="section-desc">A selection of projects showcasing AI, ML, software development, and research work.</p>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects populated by JS -->
+            </div>
+
+            <div class="text-center mt-12 reveal">
+                <a href="https://github.com/abhiverse01?tab=repositories" target="_blank" class="btn btn-secondary">
+                    View All Projects on GitHub
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="7" y1="17" x2="17" y2="7"/>
+                        <polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="section-header reveal">
+                <div class="section-label">// Contact</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-desc">Have a project in mind or just want to chat about AI? I'd love to hear from you.</p>
+            </div>
+
+            <div class="contact-container reveal">
+                <div class="contact-card">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" class="contact-icon">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <h3 class="contact-title">Ready to start a conversation?</h3>
+                    <p class="contact-desc">Whether it's about ML projects, collaboration opportunities, or just a friendly hello—my inbox is always open.</p>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:abhishek.aimarine@gmail.com" class="contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span>abhishek.aimarine@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" class="contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/abhiverse01" target="_blank" class="contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="accent">&lt;</span>AbhiShek Shah<span class="accent">/&gt;</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/abhiverse01" target="_blank" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+                <a href="https://medium.com/@theabhishekshah" target="_blank" aria-label="Medium">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M7 7v10M12 7v10M17 7v10"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">Designed & Built by AbhiShek Shah. 2024 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Terminal Easter Egg -->
+    <div class="terminal-trigger">
+        <button class="terminal-btn" id="terminal-toggle" aria-label="Open terminal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"/>
+                <line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="terminal-modal" id="terminal-modal">
+        <div class="terminal-header">
+            <div class="terminal-dot" style="background: #ff5f56;"></div>
+            <div class="terminal-dot" style="background: #ffbd2e;"></div>
+            <div class="terminal-dot" style="background: #27ca40;"></div>
+            <span class="terminal-title">terminal</span>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+            <div class="terminal-line"><span class="terminal-prompt">$</span> Welcome to AbhiShek's terminal!</div>
+            <div class="terminal-line terminal-muted">Type 'help' to see available commands.</div>
+        </div>
+        <div class="terminal-input-line">
+            <span class="terminal-prompt">$</span>
+            <input type="text" class="terminal-input" id="terminal-input" placeholder="Type a command..." autocomplete="off">
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
 </html>
