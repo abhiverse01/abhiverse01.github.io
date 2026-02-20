@@ -1140,3 +1140,105 @@ body {
         0%, 100% { opacity: 1; }
     }
 }
+
+
+
+
+
+
+
+/* ========== Hero Image Layout ========== */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    padding: 6rem 2rem;
+}
+
+/* On Desktop: Split into 2 columns */
+@media (min-width: 1024px) {
+    .hero {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        flex: 1;
+        max-width: 600px;
+        z-index: 2;
+    }
+
+    .hero-image-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        height: 100%;
+    }
+}
+
+/* The Photo Frame */
+.hero-image-frame {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 3/4; /* Adjust this if your photo is landscape (e.g., 4/3) */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.hero-image-frame:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    border-color: var(--accent);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) contrast(1.1);
+    transition: filter 0.5s ease;
+}
+
+.hero-image-frame:hover .hero-image {
+    filter: grayscale(0%) contrast(1.1);
+}
+
+/* Subtle gradient overlay for text readability if needed */
+.hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 217, 181, 0.1), transparent 60%);
+    pointer-events: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 1023px) {
+    .hero-image-wrapper {
+        margin-top: 3rem;
+        display: none; /* Hides image on mobile to keep it clean. Remove this line if you want it on mobile too */
+    }
+    
+    /* If you want to show it on mobile, use this instead: */
+    /*
+    .hero-image-wrapper {
+        margin-top: 3rem;
+    }
+    .hero-image-frame {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    */
+}
