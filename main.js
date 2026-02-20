@@ -133,7 +133,7 @@ const terminalCommands = {
   linkedin    - Open my LinkedIn
   clear       - Clear terminal
   matrix      - Something cool
-  coffee      - Coffee break?
+  tea      - tea break?
   joke        - Programmer joke`,
     
     about: () => `AbhiShek Shah - AI Engineer & Project Manager
@@ -265,17 +265,17 @@ Follow the white rabbit.
 Just kidding! But wouldn't it be cool?
 Type 'projects' to see real AI work.`,
     
-    coffee: () => `Coffee Stats:
+    tea: () => `tea Stats:
   
 Daily intake: 2-3 cups
-Favorite: Americano
-Best ideas: After coffee #2
-Debugging success rate: +40% with coffee
+Favorite: Tea
+Best ideas: After tea #2
+Debugging success rate: +40% with tea
 
 "You can't buy happiness, but you can
- buy coffee, and that's pretty close."
+ buy tea, and that's pretty close."
   
-Want to grab coffee? Type 'contact'!`,
+Want to grab tea? Type 'contact'!`,
     
     joke: () => {
         const jokes = [
@@ -284,7 +284,7 @@ Want to grab coffee? Type 'contact'!`,
             "There are only 10 types of people:\nThose who understand binary\nand those who don't.",
             "Why did the AI break up with the dataset?\n\nThere was no chemistry, just tensors.",
             "I told my neural network a joke.\n\nIt didn't laugh, but it did adjust\nits weights to find it funnier.",
-            "404: Motivation not found.\n\nPlease inject coffee and try again.",
+            "404: Motivation not found.\n\nPlease inject tea and try again.",
             "Why do ML engineers love gardening?\n\nBecause they're great at pruning!",
         ];
         return jokes[Math.floor(Math.random() * jokes.length)];
