@@ -1,3 +1,4 @@
+
 // ========== Data Definitions ==========
 const skillsData = [
     { name: 'Python', level: 95, category: 'dev', icon: 'code' },
@@ -133,8 +134,12 @@ const terminalCommands = {
   linkedin    - Open my LinkedIn
   clear       - Clear terminal
   matrix      - Something cool
-  tea      - tea break?
-  joke        - Programmer joke`,
+  tea         - Tea break?
+  joke        - Programmer joke
+  date        - Current date
+  time        - Current time
+  hello/hi    - Say hello
+  bye         - Say goodbye`,
     
     about: () => `AbhiShek Shah - AI Engineer & Project Manager
   
@@ -265,10 +270,10 @@ Follow the white rabbit.
 Just kidding! But wouldn't it be cool?
 Type 'projects' to see real AI work.`,
     
-    tea: () => `tea Stats:
+    tea: () => `Tea Stats:
   
 Daily intake: 2-3 cups
-Favorite: Tea
+Favorite: Chiya (Nepali Tea)
 Best ideas: After tea #2
 Debugging success rate: +40% with tea
 
@@ -289,8 +294,55 @@ Want to grab tea? Type 'contact'!`,
         ];
         return jokes[Math.floor(Math.random() * jokes.length)];
     },
+
+    // ===== NEW CONVERSATIONAL COMMANDS =====
+    hello: () => {
+        const greetings = [
+            "Hey there! Welcome to my terminal.",
+            "Hi! Nice to meet you. Type 'help' to see what I can do.",
+            "Hello! Ready to explore?",
+            "Yo! What's up?"
+        ];
+        return greetings[Math.floor(Math.random() * greetings.length)];
+    },
     
-    clear: () => 'CLEAR'
+    hi: () => "Hi there! How can I help?",
+    hlo: () => "Hello! (I see you're typing fast!)",
+    hey: () => "Hey! What's cooking?",
+    
+    bye: () => {
+        const farewells = [
+            "See you later! Don't forget to check out my projects.",
+            "Goodbye! Have a great day.",
+            "Logging off... Catch you on the flip side.",
+            "Bye! Come back soon."
+        ];
+        return farewells[Math.floor(Math.random() * farewells.length)];
+    },
+    
+    exit: () => "Are you trying to leave? Just close the terminal modal (click outside).",
+    quit: () => "I don't quit that easily. Try 'bye' instead.",
+    
+    ok: () => "Roger that!",
+    okay: () => "Sounds good.",
+    k: () => "k.",
+    
+    go: () => "Go where? Try 'projects' or 'skills' to get started.",
+    start: () => "Initializing... Just kidding. Type 'help' to begin.",
+    
+    thanks: () => "You're welcome! Happy to help.",
+    thx: () => "No problem!",
+    
+    // ===== UTILITY COMMANDS =====
+    date: () => `Current Date: ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`,
+    time: () => `Current Time: ${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}`,
+    
+    secret: () => `You found the secret! 
+Just kidding, there's no hidden feature here... 
+or is there? 🤫`,
+    
+    clear: () => 'CLEAR',
+    cls: () => 'CLEAR' // Alias for clear
 };
 
 const roles = ['AI Engineer', 'Project Manager', 'ML Researcher', 'Python Developer', 'Tech Writer', 'Game Developer'];
@@ -737,7 +789,7 @@ function handleTerminalInput(e) {
         outputLine.innerHTML = `<span class="terminal-prompt">$</span> ${command}`;
         terminalOutput.appendChild(outputLine);
 
-        if (command === 'clear') {
+        if (command === 'clear' || command === 'cls') {
             terminalOutput.innerHTML = '';
         } else if (terminalCommands[command]) {
             const result = terminalCommands[command]();
@@ -758,10 +810,11 @@ function handleTerminalInput(e) {
                 });
             }
         } else {
-            const errorLine = document.createElement('div');
-            errorLine.className = 'terminal-line terminal-error';
-            errorLine.textContent = `Command not found: ${command}. Type 'help' for available commands.`;
-            terminalOutput.appendChild(errorLine);
+            // Updated "Command Not Found" logic
+            const unknownLine = document.createElement('div');
+            unknownLine.className = 'terminal-line terminal-muted';
+            unknownLine.textContent = `Hm, '${command}' command means nothing in my terminal, at least for now.`;
+            terminalOutput.appendChild(unknownLine);
         }
 
         terminalInput.value = '';
