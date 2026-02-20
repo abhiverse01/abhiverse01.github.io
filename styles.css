@@ -35,6 +35,7 @@ body {
     color: var(--bg);
 }
 
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -92,7 +93,7 @@ body {
 }
 
 .header.scrolled {
-    background: rgba(8, 9, 13, 0.9);
+    background: rgba(8, 9, 13, 0.92);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
 }
@@ -195,6 +196,14 @@ body {
 .btn-small {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
+}
+
+/* ========== Focus States (Accessibility) ========== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
 /* ========== Mobile Menu ========== */
@@ -432,32 +441,7 @@ body {
 
 .about-image-frame {
     position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--card);
-}
-
-/* ========== About Section ========== */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: center;
-}
-
-@media (max-width: 900px) {
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-}
-
-.about-image-frame {
-    position: relative;
-    border-radius: 20px; /* Smooth rounded corners */
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--border);
     background: var(--card);
@@ -471,12 +455,11 @@ body {
     border-color: var(--accent);
 }
 
-/* The Photo Styling */
 .about-photo {
     width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 3/4; /* Portrait ratio, adjust to match your image */
+    aspect-ratio: 3/4;
     object-fit: cover;
     filter: grayscale(20%) contrast(1.1);
     transition: filter 0.5s ease, transform 0.5s ease;
@@ -487,7 +470,6 @@ body {
     transform: scale(1.03);
 }
 
-/* Subtle overlay for depth */
 .about-image-frame::after {
     content: '';
     position: absolute;
@@ -621,6 +603,12 @@ body {
     background: var(--accent);
     border-radius: 50%;
     border: 3px solid var(--bg);
+    box-shadow: 0 0 0 0 rgba(0, 217, 181, 0.4);
+    transition: box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    box-shadow: 0 0 0 6px rgba(0, 217, 181, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -646,6 +634,7 @@ body {
 .timeline-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-date {
@@ -740,6 +729,7 @@ body {
 .skill-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(0, 217, 181, 0.1);
 }
 
 .skill-icon {
@@ -764,7 +754,7 @@ body {
 
 .skill-level-fill {
     height: 100%;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent), #00ffcc);
     border-radius: 2px;
     transition: width 1s ease;
 }
@@ -795,6 +785,7 @@ body {
 .project-card:hover {
     border-color: var(--accent);
     transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 217, 181, 0.1);
 }
 
 .project-image {
@@ -1156,9 +1147,3 @@ body {
         0%, 100% { opacity: 1; }
     }
 }
-
-
-
-
-
-
