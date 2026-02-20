@@ -438,46 +438,62 @@ body {
     background: var(--card);
 }
 
-.about-image-placeholder {
-    aspect-ratio: 3/4;
-    background: linear-gradient(135deg, var(--bg-secondary), var(--card));
-    display: flex;
+/* ========== About Section ========== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
 }
 
-.about-image-placeholder::before {
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.about-image-frame {
+    position: relative;
+    border-radius: 20px; /* Smooth rounded corners */
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-image-frame:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
+}
+
+/* The Photo Styling */
+.about-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3/4; /* Portrait ratio, adjust to match your image */
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.1);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.about-image-frame:hover .about-photo {
+    filter: grayscale(0%) contrast(1.1);
+    transform: scale(1.03);
+}
+
+/* Subtle overlay for depth */
+.about-image-frame::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, var(--accent-dim), transparent);
-}
-
-.avatar-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), rgba(0, 217, 181, 0.6));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.avatar-initials {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--bg);
+    background: linear-gradient(135deg, rgba(0, 217, 181, 0.05), transparent 50%);
+    pointer-events: none;
 }
 
 .about-credentials {
