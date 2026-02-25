@@ -20,7 +20,7 @@ main .section {
  * 100px clears the fixed header. 
  */
 main > .section:first-of-type {
-    padding-top: 100px !important;
+    padding-top: 50px !important;
     padding-bottom: 1rem !important;
 }
 
