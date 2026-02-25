@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements & Certifications | AbhiShek Shah</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="achievements.css">
+</head>
+<body>
+    <!-- Neural Canvas (Consistent with main site) -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="achievements.html" class="nav-link active">Achievements</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <main>
+        <!-- Hero Header -->
+        <section class="section" style="padding-bottom: 2rem;">
+            <div class="section-header reveal">
+                <div class="section-label">// Credentials</div>
+                <h1 class="section-title">Achievements & Certifications</h1>
+                <p class="section-desc">A collection of verified credentials, certifications, and professional milestones.</p>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar reveal">
+            <div class="stat-box">
+                <span class="stat-number">40+</span>
+                <span class="stat-text">Certifications</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">10+</span>
+                <span class="stat-text">Platforms</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">2019</span>
+                <span class="stat-text">Journey Started</span>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="filter-section reveal">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ml">AI/ML</button>
+                <button class="filter-btn" data-filter="dev">Development</button>
+                <button class="filter-btn" data-filter="cloud">Cloud/DevOps</button>
+                <button class="filter-btn" data-filter="mgmt">Management</button>
+            </div>
+        </section>
+
+        <!-- Certificates Grid -->
+        <section class="section" style="padding-top: 1rem;">
+            <div class="cert-grid" id="cert-grid">
+                <!-- Cards will be injected by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="accent">&lt;</span>AbhiShek Shah<span class="accent">/&gt;</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/abhiverse01" target="_blank" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">Designed & Built by AbhiShek Shah. 2024 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Terminal (Optional, keeping consistent) -->
+    <div class="terminal-trigger">
+        <button class="terminal-btn" id="terminal-toggle" aria-label="Open terminal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"/>
+                <line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+        </button>
+    </div>
+    <div class="terminal-modal" id="terminal-modal">
+        <div class="terminal-header">
+            <div class="terminal-dot" style="background: #ff5f56;"></div>
+            <div class="terminal-dot" style="background: #ffbd2e;"></div>
+            <div class="terminal-dot" style="background: #27ca40;"></div>
+            <span class="terminal-title">terminal</span>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+            <div class="terminal-line"><span class="terminal-prompt">$</span> Viewing Achievements...</div>
+            <div class="terminal-line terminal-muted">Type 'help' for commands.</div>
+        </div>
+        <div class="terminal-input-line">
+            <span class="terminal-prompt">$</span>
+            <input type="text" class="terminal-input" id="terminal-input" placeholder="Type a command..." autocomplete="off">
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="achievements.js"></script>
+</body>
+</html>
