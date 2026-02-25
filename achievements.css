@@ -1,14 +1,28 @@
 /* ========== Achievements Page Specific Styles ========== */
 
-/* OVERRIDE: Fix the huge space caused by global .section class */
-main .section {
-    padding: 0 2rem !important; /* Overrides the 6rem padding from styles.css */
+/* 
+ * FIX: Remove padding from main to prevent double spacing.
+ * We will handle spacing specifically on the sections below.
+ */
+main {
+    padding-top: 0 !important;
 }
 
-/* Ensure main content clears the fixed header properly */
-main {
-    padding-top: 120px; /* Adjust based on your header height */
-    display: block;
+/* 
+ * Override global .section padding (which is 6rem) 
+ * so we can control the layout tightly.
+ */
+main .section {
+    padding: 0 2rem !important;
+}
+
+/* 
+ * Add header clearance ONLY to the very first section 
+ * so content doesn't hide behind the fixed nav.
+ */
+main > .section:first-of-type {
+    padding-top: 140px !important; /* Clears fixed header */
+    padding-bottom: 2rem !important;
 }
 
 /* Stats Bar */
@@ -17,7 +31,7 @@ main {
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem; /* Reduced margin */
+    margin-bottom: 2rem;
     padding: 0 2rem;
 }
 
@@ -271,8 +285,9 @@ main {
 
 /* Responsive */
 @media (max-width: 600px) {
-    main {
-        padding-top: 100px; /* Smaller header on mobile */
+    /* Adjust first section padding for mobile header */
+    main > .section:first-of-type {
+        padding-top: 110px !important;
     }
     
     .filter-container {
