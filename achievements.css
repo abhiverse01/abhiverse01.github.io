@@ -1,28 +1,32 @@
 /* ========== Achievements Page Specific Styles ========== */
 
 /* 
- * FIX: Remove padding from main to prevent double spacing.
- * We will handle spacing specifically on the sections below.
+ * FIX: Zero out default spacing on Main to eliminate the "huge space".
+ * We rely on the first section's padding to clear the fixed header.
  */
 main {
     padding-top: 0 !important;
+    margin-top: 0 !important;
+    display: block;
 }
 
-/* 
- * Override global .section padding (which is 6rem) 
- * so we can control the layout tightly.
- */
+/* Override the global 6rem padding from styles.css for all sections */
 main .section {
     padding: 0 2rem !important;
 }
 
 /* 
- * Add header clearance ONLY to the very first section 
- * so content doesn't hide behind the fixed nav.
+ * Specific padding for the FIRST section only.
+ * 100px clears the fixed header. 
  */
 main > .section:first-of-type {
-    padding-top: 140px !important; /* Clears fixed header */
-    padding-bottom: 2rem !important;
+    padding-top: 100px !important;
+    padding-bottom: 1rem !important;
+}
+
+/* Reduce margin on the header text to tighten layout */
+.section-header {
+    margin-bottom: 2rem;
 }
 
 /* Stats Bar */
@@ -137,18 +141,19 @@ main > .section:first-of-type {
     padding: 0 2rem 4rem;
 }
 
-/* FIX: Override reveal animation to render immediately */
+/* Override reveal animation */
 .cert-card.reveal {
     opacity: 1 !important;
     transform: translateY(0) !important;
 }
 
-/* Certificate Card - "King/Achievement" Style */
+/* Certificate Card - "King/Premium" Style */
 .cert-card {
-    background: linear-gradient(145deg, var(--card) 0%, rgba(18, 20, 26, 0.8) 100%);
+    background: linear-gradient(145deg, var(--card) 0%, rgba(18, 20, 26, 0.95) 100%);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.75rem;
+    padding-top: 2rem; /* Slight extra top padding for ribbon clearance */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,40 +162,42 @@ main > .section:first-of-type {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* The "Ribbon" or "Seal" at the top */
+/* The "Ribbon" - Fixed to absolute top */
 .cert-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent), #00ffcc); /* Teal Gradient ribbon */
-    opacity: 0.8;
+    height: 6px; /* Thicker ribbon */
+    background: linear-gradient(90deg, #00d9b5, #00ffcc, #00d9b5);
+    border-radius: 16px 16px 0 0; /* Curves to match card */
+    z-index: 2;
 }
 
-/* The "Verified" Crown/Icon in corner */
+/* The "Verified" Star Icon */
 .cert-card::after {
     content: '★';
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 20px;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--accent);
-    opacity: 0.1;
+    opacity: 0.08;
     transition: all 0.3s ease;
     transform: rotate(15deg);
+    z-index: 0;
 }
 
 .cert-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 217, 181, 0.15);
-    border-color: rgba(0, 217, 181, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 217, 181, 0.15);
+    border-color: rgba(0, 217, 181, 0.4);
 }
 
 .cert-card:hover::after {
-    opacity: 0.4;
-    transform: rotate(0deg) scale(1.2);
+    opacity: 0.3;
+    transform: rotate(0deg) scale(1.1);
 }
 
 .cert-header {
@@ -198,7 +205,7 @@ main > .section:first-of-type {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1rem;
-    position: relative; /* Ensure content is above pseudo elements */
+    position: relative;
     z-index: 1;
 }
 
@@ -206,7 +213,7 @@ main > .section:first-of-type {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #ffd700; /* Gold color for prestige */
+    color: #ffd700; /* Gold for prestige */
     font-weight: 700;
     background: rgba(255, 215, 0, 0.1);
     padding: 0.25rem 0.75rem;
@@ -270,7 +277,7 @@ main > .section:first-of-type {
 
 .cert-link:hover {
     gap: 0.75rem;
-    color: #00ffcc; /* Brighter teal on hover */
+    color: #00ffcc;
 }
 
 .cert-link svg {
@@ -285,9 +292,8 @@ main > .section:first-of-type {
 
 /* Responsive */
 @media (max-width: 600px) {
-    /* Adjust first section padding for mobile header */
     main > .section:first-of-type {
-        padding-top: 110px !important;
+        padding-top: 90px !important; /* Adjust for mobile header */
     }
     
     .filter-container {
