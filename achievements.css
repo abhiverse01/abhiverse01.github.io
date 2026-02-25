@@ -1,30 +1,23 @@
 /* ========== Achievements Page Specific Styles ========== */
 
 /* 
- * FIX: Zero out default spacing on Main to eliminate the "huge space".
- * We rely on the first section's padding to clear the fixed header.
+ * FIX 1: Aggressively override the global .section padding.
+ * We set it to 0 so we have full control over the spacing on this page.
  */
-main {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-    display: block;
-}
-
-/* Override the global 6rem padding from styles.css for all sections */
 main .section {
     padding: 0 2rem !important;
 }
 
 /* 
- * Specific padding for the FIRST section only.
- * 100px clears the fixed header. 
+ * FIX 2: Add clearance ONLY for the very first section to clear the fixed header.
+ * Reduced from 100px to 80px to minimize empty space at the top.
  */
 main > .section:first-of-type {
-    padding-top: 50px !important;
+    padding-top: 80px !important; 
     padding-bottom: 1rem !important;
 }
 
-/* Reduce margin on the header text to tighten layout */
+/* Tighten the header margin */
 .section-header {
     margin-bottom: 2rem;
 }
@@ -141,7 +134,7 @@ main > .section:first-of-type {
     padding: 0 2rem 4rem;
 }
 
-/* Override reveal animation */
+/* Ensure cards render immediately without scroll animation delay */
 .cert-card.reveal {
     opacity: 1 !important;
     transform: translateY(0) !important;
@@ -153,7 +146,7 @@ main > .section:first-of-type {
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.75rem;
-    padding-top: 2rem; /* Slight extra top padding for ribbon clearance */
+    padding-top: 2rem; /* Extra padding at top to clear the ribbon */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -162,20 +155,23 @@ main > .section:first-of-type {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* The "Ribbon" - Fixed to absolute top */
+/* 
+ * The "Ribbon" - Fixed position at absolute top.
+ * Uses z-index to stay above the background gradient but below text content if needed.
+ */
 .cert-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 6px; /* Thicker ribbon */
+    height: 6px; /* Thick ribbon */
     background: linear-gradient(90deg, #00d9b5, #00ffcc, #00d9b5);
-    border-radius: 16px 16px 0 0; /* Curves to match card */
-    z-index: 2;
+    border-radius: 16px 16px 0 0; /* Matches card corners */
+    z-index: 2; /* Sits on top */
 }
 
-/* The "Verified" Star Icon */
+/* The "Verified" Star Icon in corner */
 .cert-card::after {
     content: '★';
     position: absolute;
@@ -206,7 +202,7 @@ main > .section:first-of-type {
     align-items: flex-start;
     margin-bottom: 1rem;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Ensures text is above the star/ribbon */
 }
 
 .cert-issuer {
@@ -293,7 +289,7 @@ main > .section:first-of-type {
 /* Responsive */
 @media (max-width: 600px) {
     main > .section:first-of-type {
-        padding-top: 90px !important; /* Adjust for mobile header */
+        padding-top: 90px !important;
     }
     
     .filter-container {
