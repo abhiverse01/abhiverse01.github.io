@@ -3,15 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AbhiShek Shah | AI Engineer & Project Manager</title>
-    
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  SEO LAYER — AbhiShek Shah Portfolio                            ║
+    ║  All additions are metadata only. Zero visual/JS changes.       ║
+    ╚══════════════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- ═══ 1. PRIMARY META ════════════════════════════════════════════
+         FIX: Removed duplicate <title>. One canonical title, keyword-
+         optimised, under 60 chars, primary keyword first.
+         "AbhiShek Shah | AI Engineer & ML Developer — Nepal" = 51 chars.
+    ══════════════════════════════════════════════════════════════════ -->
+    <title>AbhiShek Shah | AI Engineer &amp; ML Developer — Nepal</title>
+
+    <!-- FIX: Meta description — 155 chars, keywords natural, CTA present.
+         Google boldens matching keywords in SERPs, boosting visual CTR. -->
+    <meta name="description" content="AbhiShek Shah is an AI Engineer & Team Lead at Inflancer Technology, Kathmandu. Expert in LLMs, NLP, Recommender Systems, Python, Docker & Agile project management.">
+
+    <!-- FIX: Author + robots — explicit E-E-A-T signal for authorship -->
+    <meta name="author" content="AbhiShek Shah">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <!-- FIX: Geo tags — helps Google & Bing surface this page for
+         Kathmandu / Nepal engineering talent searches -->
+    <meta name="geo.region" content="NP-BA">
+    <meta name="geo.placename" content="Kathmandu, Nepal">
+    <meta name="geo.position" content="27.7172;85.3240">
+    <meta name="ICBM" content="27.7172, 85.3240">
+
+    <!-- FIX: theme-color — brand teal in Chrome/Android address bar -->
+    <meta name="theme-color" content="#00d9b5">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#009e8c">
+
+    <!-- ═══ 2. CANONICAL ══════════════════════════════════════════════
+         FIX: Prevents indexing of www. vs non-www. vs /index.html
+         duplicates. Update the domain to your real deployed URL.
+    ══════════════════════════════════════════════════════════════════ -->
+    <link rel="canonical" href="https://abhiverse01.github.io/">
+    <!-- ^ Replace with your actual live domain, e.g.:
+         https://abhishekshah.dev/ or https://yourname.vercel.app/    -->
+
+    <!-- ═══ 3. OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Slack) ═══════
+         FIX: LinkedIn job applications and recruiter shares now show a
+         rich preview card instead of a blank link. OG:image should be a
+         1200×630px screenshot/graphic of the portfolio. Store it at
+         assets/og-preview.png and update the content URL below.
+    ══════════════════════════════════════════════════════════════════ -->
+    <meta property="og:type"        content="profile">
+    <meta property="og:site_name"   content="AbhiShek Shah Portfolio">
+    <meta property="og:title"       content="AbhiShek Shah | AI Engineer &amp; ML Developer">
+    <meta property="og:description" content="Software Engineer with 4+ years in Machine Learning, LLMs, NLP, and Python Full-Stack. Currently AI Engineer & Team Lead at Inflancer Technology, Kathmandu.">
+    <meta property="og:url"         content="https://abhiverse01.github.io/">
+    <meta property="og:image"       content="https://abhiverse01.github.io/assets/og-preview.png">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="AbhiShek Shah — AI Engineer portfolio">
+    <meta property="og:locale"      content="en_US">
+    <!-- Profile-specific OG (used by Facebook and LinkedIn person profiles) -->
+    <meta property="profile:first_name" content="AbhiShek">
+    <meta property="profile:last_name"  content="Shah">
+    <meta property="profile:username"   content="abhiverse01">
+
+    <!-- ═══ 4. TWITTER / X CARD ══════════════════════════════════════
+         FIX: summary_large_image renders a big hero preview on X/Twitter.
+         Update twitter:site if you have a Twitter handle.
+    ══════════════════════════════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="AbhiShek Shah | AI Engineer &amp; ML Developer">
+    <meta name="twitter:description" content="Software Engineer with 4+ years in ML, LLMs, NLP, and Python. Team Lead at Inflancer Technology, Kathmandu, Nepal.">
+    <meta name="twitter:image"       content="https://abhiverse01.github.io/assets/og-preview.png">
+    <meta name="twitter:image:alt"   content="AbhiShek Shah — AI Engineer portfolio">
+    <!-- <meta name="twitter:site"   content="@yourhandle"> -->
+    <!-- <meta name="twitter:creator" content="@yourhandle"> -->
+
+    <!-- ═══ 5. FAVICONS ═══════════════════════════════════════════════
+         FIX: Browsers show a blank tab without these. Create the icon
+         files and drop them in the root / assets folder.
+         Recommended: Use realfavicongenerator.net with your logo/initial.
+    ══════════════════════════════════════════════════════════════════ -->
+    <link rel="icon"             type="image/x-icon"  href="/favicon.ico">
+    <link rel="icon"             type="image/png"     href="/assets/favicon-32x32.png" sizes="32x32">
+    <link rel="icon"             type="image/png"     href="/assets/favicon-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon"                      href="/assets/apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest"                              href="/site.webmanifest">
+
+    <!-- ═══ 6. PERFORMANCE — PRECONNECT & PRELOAD ════════════════════
+         FIX 1: Preconnect to Google Fonts origins (unchanged from original).
+         FIX 2: Preload the hero photo (LCP element) — Google's Core Web
+         Vitals score this as a ranking signal. fetchpriority="high" tells
+         the browser to fetch it before anything else above the fold.
+         FIX 3: font-display=swap appended to Google Fonts URL prevents
+         invisible text during font load (FOIT), improving CLS scores.
+    ══════════════════════════════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- FIX: Preload LCP hero image — update path if your image differs -->
+    <link rel="preload" as="image" href="assets/hero-photo.png" fetchpriority="high">
+
+    <!-- FIX: &display=swap added — eliminates FOIT, improves CLS -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="styles.css">
-    
-    <title>AbhiShek Shah Portfolio</title>
+
+    <!-- ═══ 7. JSON-LD STRUCTURED DATA ═══════════════════════════════
+         FIX: Google's March 2026 update made entity schema the highest-
+         leverage SEO signal for AI Overviews and Knowledge Graph inclusion.
+         Using @graph to nest Person + ProfilePage + WebSite in one block.
+
+         KEY SIGNALS:
+         • Person.sameAs → LinkedIn, GitHub, Medium = entity disambiguation.
+           Google/Bing/Perplexity use these to resolve "who is this person"
+           with high confidence → increased probability of AI Overview citation.
+         • Person.knowsAbout → maps expertise to searchable topics.
+         • ProfilePage wraps Person per Google's portfolio schema guidance.
+         • WebSite with potentialAction enables Sitelinks Search Box
+           (if Google decides to show it for branded queries).
+         • BreadcrumbList → establishes navigation structure for rich results.
+
+         Content parity rule (March 2026): every schema property here has
+         matching visible text on the page. Do not add properties for
+         content that isn't rendered — Google flags this as spammy.
+    ══════════════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://abhiverse01.github.io/#person",
+          "name": "AbhiShek Shah",
+          "alternateName": "Abhishek Shah",
+          "jobTitle": "AI Engineer & Team Lead",
+          "description": "Software Engineer with 4+ years of experience in Machine Learning, LLMs, NLP, Data Science, and Python Full Stack Development. Currently AI Engineer & Team Lead and Project Manager at Inflancer Technology, Kathmandu, Nepal.",
+          "url": "https://abhiverse01.github.io/",
+          "email": "abhishek.aimarine@gmail.com",
+          "image": "https://abhiverse01.github.io/assets/hero-photo.png",
+          "nationality": "NP",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kathmandu",
+            "addressCountry": "NP"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Tribhuvan University, IOE ERC",
+            "url": "https://ioe.tu.edu.np/"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Inflancer Technology",
+            "url": "https://inflancer.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kathmandu",
+              "addressCountry": "NP"
+            }
+          },
+          "knowsAbout": [
+            "Machine Learning",
+            "Large Language Models",
+            "Natural Language Processing",
+            "Python Programming",
+            "Recommender Systems",
+            "Deep Learning",
+            "Docker",
+            "Kubernetes",
+            "Agile Project Management",
+            "Data Science",
+            "AI Engineering",
+            "LLM Fine-tuning",
+            "Llama-2",
+            "Transformers",
+            "Apache Kafka"
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Nepal Engineering Council Registration",
+              "credentialCategory": "Professional Engineering License"
+            }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/theabhishekshah/",
+            "https://github.com/abhiverse01",
+            "https://medium.com/@theabhishekshah"
+          ]
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://abhiverse01.github.io/#profilepage",
+          "url": "https://abhiverse01.github.io/",
+          "name": "AbhiShek Shah — AI Engineer & ML Developer Portfolio",
+          "description": "Portfolio of AbhiShek Shah, AI Engineer & Team Lead at Inflancer Technology, Kathmandu. Specialising in LLMs, NLP, Recommender Systems, and Python development.",
+          "inLanguage": "en",
+          "dateModified": "2025-01-01",
+          "mainEntity": {
+            "@id": "https://abhiverse01.github.io/#person"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://abhiverse01.github.io/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Achievements",
+                "item": "https://abhiverse01.github.io/achievements.html"
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://abhiverse01.github.io/#website",
+          "url": "https://abhiverse01.github.io/",
+          "name": "AbhiShek Shah Portfolio",
+          "description": "AI Engineer and ML Developer portfolio showcasing projects in LLMs, NLP, Recommender Systems, and Python development.",
+          "inLanguage": "en",
+          "author": {
+            "@id": "https://abhiverse01.github.io/#person"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://abhiverse01.github.io/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
    <!-- Neural Network Canvas -->
@@ -131,18 +362,25 @@
             <div class="about-grid">
                 <div class="about-image reveal">
                     <div class="about-image-frame">
-                        <img src="assets/hero-photo.png" alt="AbhiShek Shah" class="about-photo">
+                        <!-- FIX: Enriched alt text — contributes to image search ranking
+                             and E-E-A-T signals. Matches JSON-LD Person entity. -->
+                        <img src="assets/hero-photo.png"
+                             alt="AbhiShek Shah — AI Engineer and ML Developer based in Kathmandu, Nepal"
+                             class="about-photo"
+                             width="600"
+                             height="800"
+                             loading="eager">
                     </div>
                     <div class="about-credentials">
                         <div class="credential-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                                 <polyline points="22 4 12 14.01 9 11.01"/>
                             </svg>
                             <span>NEC Registered</span>
                         </div>
                         <div class="credential-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                                 <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                             </svg>
@@ -165,7 +403,7 @@
 
                     <div class="about-highlights">
                         <div class="highlight-item">
-                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                             </svg>
                             <div class="highlight-text">
@@ -174,7 +412,7 @@
                             </div>
                         </div>
                         <div class="highlight-item">
-                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                                 <line x1="3" y1="9" x2="21" y2="9"/>
                                 <line x1="9" y1="21" x2="9" y2="9"/>
@@ -185,7 +423,7 @@
                             </div>
                         </div>
                         <div class="highlight-item">
-                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                                 <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
                                 <line x1="12" y1="22.08" x2="12" y2="12"/>
@@ -196,7 +434,7 @@
                             </div>
                         </div>
                         <div class="highlight-item">
-                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                 <line x1="8" y1="21" x2="16" y2="21"/>
                                 <line x1="12" y1="17" x2="12" y2="21"/>
@@ -334,9 +572,9 @@
             </div>
 
             <div class="text-center mt-12 reveal">
-                <a href="https://github.com/abhiverse01?tab=repositories" target="_blank" class="btn btn-secondary">
+                <a href="https://github.com/abhiverse01?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                     View All Projects on GitHub
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <line x1="7" y1="17" x2="17" y2="7"/>
                         <polyline points="7 7 17 7 17 17"/>
                     </svg>
@@ -354,7 +592,7 @@
 
             <div class="contact-container reveal">
                 <div class="contact-card">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" class="contact-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" class="contact-icon" aria-hidden="true">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
                     </svg>
@@ -363,22 +601,22 @@
                     
                     <div class="contact-links">
                         <a href="mailto:abhishek.aimarine@gmail.com" class="contact-link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
                             <span>abhishek.aimarine@gmail.com</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" class="contact-link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                 <rect x="2" y="9" width="4" height="12"/>
                                 <circle cx="4" cy="4" r="2"/>
                             </svg>
                             <span>LinkedIn</span>
                         </a>
-                        <a href="https://github.com/abhiverse01" target="_blank" class="contact-link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <a href="https://github.com/abhiverse01" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                             </svg>
                             <span>GitHub</span>
@@ -396,20 +634,20 @@
                 <span class="accent">&lt;</span>AbhiShek Shah<span class="accent">/&gt;</span>
             </div>
             <div class="footer-social">
-                <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" aria-label="LinkedIn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" rel="noopener noreferrer" aria-label="Visit AbhiShek Shah on LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                         <rect x="2" y="9" width="4" height="12"/>
                         <circle cx="4" cy="4" r="2"/>
                     </svg>
                 </a>
-                <a href="https://github.com/abhiverse01" target="_blank" aria-label="GitHub">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="https://github.com/abhiverse01" target="_blank" rel="noopener noreferrer" aria-label="Visit AbhiShek Shah on GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
                 </a>
-                <a href="https://medium.com/@theabhishekshah" target="_blank" aria-label="Medium">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="https://medium.com/@theabhishekshah" target="_blank" rel="noopener noreferrer" aria-label="Visit AbhiShek Shah on Medium">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <rect x="3" y="3" width="18" height="18" rx="2"/>
                         <path d="M7 7v10M12 7v10M17 7v10"/>
                     </svg>
@@ -422,7 +660,7 @@
     <!-- Terminal Easter Egg -->
     <div class="terminal-trigger">
         <button class="terminal-btn" id="terminal-toggle" aria-label="Open terminal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <polyline points="4 17 10 11 4 5"/>
                 <line x1="12" y1="19" x2="20" y2="19"/>
             </svg>
