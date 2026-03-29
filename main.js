@@ -359,7 +359,13 @@ let mouseX = 0;
 let mouseY = 0;
 let particles = [];
 let animationId = null;
+let particleColor = 'rgba(0, 217, 181, 0.6)';  // Paricle color fix
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Expose for theme toggle
+window.recolorCanvas = function(color) {
+    particleColor = color;
+};
 
 // ========== Initialization ==========
 document.addEventListener('DOMContentLoaded', () => {
@@ -380,7 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
     skillCategoryBtns = document.querySelectorAll('.skill-category-btn');
     navLinkElements = document.querySelectorAll('.nav-link');
 
-    // Initialize everything
+    //Initialise everything
+    // Theme toggle init
+    initThemeToggle();
     initCanvas();
     initEventListeners();
     renderSkills();
@@ -452,7 +460,7 @@ class Particle {
         const radius = Math.max(0.5, this.radius);
         ctx.beginPath();
         ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 217, 181, 0.6)';
+        ctx.fillStyle = particleColor;
         ctx.fill();
     }
 }
@@ -477,7 +485,7 @@ function drawConnections() {
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
                 ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(0, 217, 181, ${opacity})`;
+                ctx.strokeStyle = particleColor.replace(/[\d.]+\)$/, `${opacity})`);
                 ctx.lineWidth = 1;
                 ctx.stroke();
             }
@@ -826,4 +834,38 @@ function handleTerminalOutsideClick(e) {
     if (!terminalModal.contains(e.target) && !terminalToggle.contains(e.target)) {
         terminalModal.classList.remove('open');
     }
+}
+
+// ========== Theme Toggle ==========
+function initThemeToggle() {
+    const html   = document.documentElement;
+    const btn    = document.getElementById('theme-toggle');
+    const STORE  = 'portfolio-theme';
+    const DARK   = 'dark';
+    const LIGHT  = 'light';
+
+    const stored  = localStorage.getItem(STORE);
+    const prefers = window.matchMedia('(prefers-color-scheme: light)').matches ? LIGHT : DARK;
+    html.dataset.theme = stored || prefers;
+
+    btn.addEventListener('click', () => {
+        const next = html.dataset.theme === DARK ? LIGHT : DARK;
+        html.dataset.theme = next;
+        localStorage.setItem(STORE, next);
+        btn.setAttribute('aria-pressed', next === LIGHT);
+
+        if (typeof window.recolorCanvas === 'function') {
+            const color = next === LIGHT
+                ? 'rgba(0,158,140,0.18)'
+                : 'rgba(0,217,181,0.5)';
+            window.recolorCanvas(color);
+        }
+    });
+
+    window.matchMedia('(prefers-color-scheme: light)')
+        .addEventListener('change', e => {
+            if (!localStorage.getItem(STORE)) {
+                html.dataset.theme = e.matches ? LIGHT : DARK;
+            }
+        });
 }
