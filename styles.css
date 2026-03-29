@@ -1147,3 +1147,768 @@ input:focus-visible {
         0%, 100% { opacity: 1; }
     }
 }
+
+
+/* ==========================================================================
+   LIGHT MODE THEME — PORTFOLIO
+   Complete override layer for all components.
+   
+   HOW TO USE:
+   1.  Add this file as a <link> after your main stylesheet.
+   2.  Add data-theme="dark" to your <html> tag as default.
+   3.  Paste the Toggle HTML into your <nav> (see bottom of this file).
+   4.  Paste the Toggle JS before </body> (see bottom of this file).
+   5.  For the neural canvas, see the canvas integration note at the bottom.
+   ========================================================================== */
+ 
+ 
+/* ==========================================================================
+   1. LIGHT MODE CSS CUSTOM PROPERTIES
+   
+   Design intent:
+   ─ Cool-tinted light backgrounds preserve the tech/dev personality.
+   ─ Accent is shifted from #00d9b5 → #009e8c for WCAG AA contrast on white.
+   ─ Cards are pure white to create clear elevation layers.
+   ─ Borders are stronger than in dark mode (dark mode uses bg contrast;
+     light mode needs explicit delineation).
+   ─ Shadows replace the "void" depth of dark mode.
+   ========================================================================== */
+ 
+[data-theme="light"] {
+    --bg:           #f0f2f8;          /* Cool-tinted off-white page bg       */
+    --bg-secondary: #e4e8f2;          /* Alt section bg — slightly deeper     */
+    --fg:           #0a0c14;          /* Near-black primary text              */
+    --muted:        #5a6680;          /* Blue-grey muted text                 */
+    --accent:       #009e8c;          /* WCAG AA teal on white bg             */
+    --accent-dim:   rgba(0,158,140,0.10); /* Tinted accent bg wash            */
+    --card:         #ffffff;          /* Pure white card surfaces             */
+    --border:       #ced3e3;          /* Visible but soft border              */
+    --glow:         rgba(0,158,140,0.28); /* Softer glow for light bg         */
+ 
+    /* Extra tokens — only used in light mode overrides below */
+    --shadow-sm:    0 2px  8px rgba(10,12,40,0.06);
+    --shadow-md:    0 8px 24px rgba(10,12,40,0.10);
+    --shadow-lg:    0 16px 48px rgba(10,12,40,0.14);
+    --shadow-glow:  0 10px 30px var(--glow);
+    --canvas-color: rgba(0,158,140,0.18);  /* read by JS canvas renderer      */
+}
+ 
+ 
+/* ==========================================================================
+   2. GLOBAL BASE — body, selection, scrollbar
+   ========================================================================== */
+ 
+[data-theme="light"] body {
+    background: var(--bg);
+    color: var(--fg);
+}
+ 
+[data-theme="light"] ::selection {
+    background: var(--accent);
+    color: #ffffff;
+}
+ 
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+ 
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: var(--border);
+}
+ 
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+ 
+ 
+/* ==========================================================================
+   3. NEURAL CANVAS
+   In dark mode the canvas particles are bright on black.
+   In light mode we reduce opacity so the faint lines sit behind content
+   without dominating. The JS integration note at the bottom tells you
+   how to change the particle draw colour via the CSS variable.
+   ========================================================================== */
+ 
+[data-theme="light"] #neural-canvas {
+    opacity: 0.35;
+    mix-blend-mode: multiply;   /* blends teal lines into the light bg */
+}
+ 
+ 
+/* ==========================================================================
+   4. HEADER & NAVIGATION
+   ========================================================================== */
+ 
+/* Scrolled state — was a near-black glass panel */
+[data-theme="light"] .header.scrolled {
+    background: rgba(240, 242, 248, 0.92);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+ 
+/* Logo */
+[data-theme="light"] .logo {
+    color: var(--fg);
+}
+ 
+/* Nav links */
+[data-theme="light"] .nav-link {
+    color: var(--muted);
+}
+ 
+[data-theme="light"] .nav-link:hover,
+[data-theme="light"] .nav-link.active {
+    color: var(--fg);
+}
+ 
+/* Mobile drawer */
+[data-theme="light"] .nav-links {
+    background: var(--card);
+    border-left: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+ 
+/* Mobile hamburger lines */
+[data-theme="light"] .mobile-menu-btn span {
+    background: var(--fg);
+}
+ 
+/* Mobile overlay */
+[data-theme="light"] .mobile-overlay {
+    background: rgba(10, 12, 20, 0.4);
+}
+ 
+/* Focus rings */
+[data-theme="light"] a:focus-visible,
+[data-theme="light"] button:focus-visible,
+[data-theme="light"] input:focus-visible {
+    outline-color: var(--accent);
+}
+ 
+ 
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
+ 
+/* Primary — accent fill stays, but shadow and text adjust */
+[data-theme="light"] .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+ 
+/* Secondary — was transparent on dark bg; now needs a subtle fill */
+[data-theme="light"] .btn-secondary {
+    background: var(--card);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+    box-shadow: none;
+}
+ 
+ 
+/* ==========================================================================
+   6. HERO SECTION
+   ========================================================================== */
+ 
+/* Status badge */
+[data-theme="light"] .hero-label {
+    background: var(--accent-dim);
+    border: 1px solid rgba(0, 158, 140, 0.25);
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .hero-label::before {
+    background: var(--accent);
+}
+ 
+/* Title */
+[data-theme="light"] .hero-title {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .name-highlight {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .name-highlight::after {
+    background: var(--accent);
+}
+ 
+/* Subtitle */
+[data-theme="light"] .hero-subtitle {
+    color: var(--muted);
+}
+ 
+/* Typing cursor */
+[data-theme="light"] .typing-text {
+    color: var(--accent);
+    border-right-color: var(--accent);
+}
+ 
+/* Stats strip */
+[data-theme="light"] .hero-stats {
+    border-top: 1px solid var(--border);
+}
+ 
+[data-theme="light"] .stat-value {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .stat-label {
+    color: var(--muted);
+}
+ 
+ 
+/* ==========================================================================
+   7. SECTION CHROME — labels, titles, descriptions
+   ========================================================================== */
+ 
+[data-theme="light"] .section-label {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .section-title {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .section-desc {
+    color: var(--muted);
+}
+ 
+[data-theme="light"] .section-alt {
+    background: var(--bg-secondary);
+}
+ 
+ 
+/* ==========================================================================
+   8. ABOUT SECTION
+   ========================================================================== */
+ 
+/* Image frame — was pure-dark card */
+[data-theme="light"] .about-image-frame {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+}
+ 
+[data-theme="light"] .about-image-frame:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent);
+}
+ 
+/* Photo — less aggressive desaturation on light */
+[data-theme="light"] .about-photo {
+    filter: grayscale(10%) contrast(1.05) brightness(1.02);
+}
+ 
+[data-theme="light"] .about-image-frame:hover .about-photo {
+    filter: grayscale(0%) contrast(1.05) brightness(1.02);
+}
+ 
+/* Light overlay on image frame — flip gradient direction for light */
+[data-theme="light"] .about-image-frame::after {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 158, 140, 0.04),
+        transparent 60%
+    );
+}
+ 
+/* Credential badges */
+[data-theme="light"] .credential-badge {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .credential-badge:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+ 
+[data-theme="light"] .credential-badge svg {
+    color: var(--accent);
+}
+ 
+/* About text */
+[data-theme="light"] .about-content h3 {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .about-content p {
+    color: var(--muted);
+}
+ 
+/* Highlight items */
+[data-theme="light"] .highlight-icon {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .highlight-text p {
+    color: var(--muted);
+}
+ 
+ 
+/* ==========================================================================
+   9. TIMELINE
+   ========================================================================== */
+ 
+/* Vertical guide line */
+[data-theme="light"] .timeline::before {
+    background: var(--border);
+}
+ 
+/* Dot */
+[data-theme="light"] .timeline-dot {
+    background: var(--accent);
+    border-color: var(--bg);    /* matches page bg so it "cuts through" the line */
+    box-shadow: 0 0 0 0 rgba(0, 158, 140, 0.4);
+}
+ 
+[data-theme="light"] .timeline-item:hover .timeline-dot {
+    box-shadow: 0 0 0 6px rgba(0, 158, 140, 0.18);
+}
+ 
+/* Cards */
+[data-theme="light"] .timeline-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .timeline-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md), 0 0 0 1px var(--accent);
+}
+ 
+[data-theme="light"] .timeline-date {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .timeline-title {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .timeline-company {
+    color: var(--muted);
+}
+ 
+[data-theme="light"] .timeline-desc {
+    color: var(--muted);
+}
+ 
+/* Tags (shared with projects) */
+[data-theme="light"] .tag {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid rgba(0, 158, 140, 0.2);
+}
+ 
+ 
+/* ==========================================================================
+   10. SKILLS SECTION
+   ========================================================================== */
+ 
+/* Category filter buttons */
+[data-theme="light"] .skill-category-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .skill-category-btn:hover,
+[data-theme="light"] .skill-category-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+    box-shadow: none;
+}
+ 
+/* Skill cards */
+[data-theme="light"] .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(0, 158, 140, 0.10);
+}
+ 
+[data-theme="light"] .skill-icon {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .skill-name {
+    color: var(--fg);
+}
+ 
+/* Level bar track */
+[data-theme="light"] .skill-level {
+    background: var(--border);
+}
+ 
+/* Level fill — keep same gradient, it works on both modes */
+[data-theme="light"] .skill-level-fill {
+    background: linear-gradient(90deg, var(--accent), #00d4b0);
+}
+ 
+ 
+/* ==========================================================================
+   11. PROJECTS SECTION
+   ========================================================================== */
+ 
+[data-theme="light"] .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg), 0 0 24px rgba(0, 158, 140, 0.12);
+}
+ 
+/* Project thumbnail area */
+[data-theme="light"] .project-image {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg));
+}
+ 
+/* Grid pattern overlay — needs to be darker/visible on light bg */
+[data-theme="light"] .project-image-pattern {
+    opacity: 0.08;
+    background-image:
+        linear-gradient(var(--accent) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+}
+ 
+/* Project logo pill */
+[data-theme="light"] .project-logo {
+    background: var(--accent-dim);
+    border: 1px solid rgba(0, 158, 140, 0.25);
+    color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .project-title {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .project-desc {
+    color: var(--muted);
+}
+ 
+/* Project action links */
+[data-theme="light"] .project-link {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .project-link:hover {
+    opacity: 0.65;
+}
+ 
+ 
+/* ==========================================================================
+   12. CONTACT SECTION
+   ========================================================================== */
+ 
+[data-theme="light"] .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+}
+ 
+[data-theme="light"] .contact-title {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .contact-desc {
+    color: var(--muted);
+}
+ 
+/* Individual contact link pills */
+[data-theme="light"] .contact-link {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .contact-link:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+ 
+[data-theme="light"] .contact-link svg {
+    color: var(--accent);
+}
+ 
+ 
+/* ==========================================================================
+   13. FOOTER
+   ========================================================================== */
+ 
+[data-theme="light"] .footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+}
+ 
+[data-theme="light"] .footer-logo {
+    color: var(--fg);
+}
+ 
+[data-theme="light"] .footer-social a {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .footer-social a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+    transform: translateY(-2px);
+}
+ 
+[data-theme="light"] .footer-copy {
+    color: var(--muted);
+}
+ 
+ 
+/* ==========================================================================
+   14. TERMINAL WIDGET
+   ========================================================================== */
+ 
+[data-theme="light"] .terminal-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    box-shadow: var(--shadow-sm);
+}
+ 
+[data-theme="light"] .terminal-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .terminal-modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+ 
+/* Terminal "title bar" */
+[data-theme="light"] .terminal-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+}
+ 
+[data-theme="light"] .terminal-title {
+    color: var(--muted);
+}
+ 
+/* Terminal output body */
+[data-theme="light"] .terminal-body {
+    background: var(--card);
+}
+ 
+[data-theme="light"] .terminal-muted {
+    color: var(--muted);
+}
+ 
+[data-theme="light"] .terminal-prompt {
+    color: var(--accent);
+}
+ 
+[data-theme="light"] .terminal-info {
+    color: var(--accent);
+}
+ 
+/* Error/success stay vivid on both themes — they're semantic colours */
+[data-theme="light"] .terminal-error {
+    color: #d93025;
+}
+ 
+[data-theme="light"] .terminal-success {
+    color: #188038;
+}
+ 
+/* Input line */
+[data-theme="light"] .terminal-input-line {
+    border-top: 1px solid var(--border);
+}
+ 
+[data-theme="light"] .terminal-input {
+    background: transparent;
+    color: var(--fg);
+    caret-color: var(--accent);
+}
+ 
+/* Scrollbar inside terminal body */
+[data-theme="light"] .terminal-body::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+ 
+[data-theme="light"] .terminal-body::-webkit-scrollbar-thumb {
+    background: var(--border);
+}
+ 
+ 
+/* ==========================================================================
+   15. THEME TOGGLE BUTTON
+   A pill-shaped toggle that sits in the nav, with sun/moon icons.
+   The track slides a thumb; CSS transitions handle animation.
+   ========================================================================== */
+ 
+.theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--muted);
+    transition: color 0.3s ease;
+    flex-shrink: 0;
+}
+ 
+.theme-toggle:hover {
+    color: var(--fg);
+}
+ 
+/* The sliding track */
+.theme-toggle-track {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+ 
+/* Sliding thumb */
+.theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+ 
+/* Icon visibility: dark mode shows moon, light mode shows sun */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    color: #ffffff;
+    transition: opacity 0.25s ease, transform 0.35s ease;
+}
+ 
+/* Dark mode state (default): thumb left, moon visible */
+.theme-toggle .icon-sun  { opacity: 0; transform: rotate(90deg) scale(0.5); }
+.theme-toggle .icon-moon { opacity: 1; transform: rotate(0deg) scale(1);    }
+ 
+/* Light mode state: thumb right, sun visible */
+[data-theme="light"] .theme-toggle-thumb {
+    transform: translateX(24px);
+}
+ 
+[data-theme="light"] .theme-toggle-track {
+    background: #e4e8f2;
+    border-color: #ced3e3;
+}
+ 
+[data-theme="light"] .theme-toggle .icon-sun  { opacity: 1; transform: rotate(0deg) scale(1);    }
+[data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+ 
+/* Focus ring */
+.theme-toggle:focus-visible .theme-toggle-track {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+ 
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle-thumb,
+    .theme-toggle .icon-sun,
+    .theme-toggle .icon-moon,
+    .theme-toggle-track {
+        transition: none;
+    }
+}
+ 
+ 
+/* ==========================================================================
+   16. REVEAL ANIMATIONS — light-mode shadow variants
+   The dark-mode reveals use translateY; the shadow adds
+   depth as cards lift into view.
+   ========================================================================== */
+ 
+[data-theme="light"] .timeline-card,
+[data-theme="light"] .skill-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .contact-card {
+    /* Base shadow for all cards */
+    box-shadow: var(--shadow-sm);
+}
+ 
+ 
+/* ==========================================================================
+   17. SYSTEM PREFERENCE — auto dark/light without JS toggle
+   If user hasn't explicitly chosen a theme, respect their OS preference.
+   This block runs ONLY when data-theme is not set on <html>.
+   ========================================================================== */
+ 
+@media (prefers-color-scheme: light) {
+    html:not([data-theme]) {
+        --bg:           #f0f2f8;
+        --bg-secondary: #e4e8f2;
+        --fg:           #0a0c14;
+        --muted:        #5a6680;
+        --accent:       #009e8c;
+        --accent-dim:   rgba(0,158,140,0.10);
+        --card:         #ffffff;
+        --border:       #ced3e3;
+        --glow:         rgba(0,158,140,0.28);
+        --shadow-sm:    0 2px  8px rgba(10,12,40,0.06);
+        --shadow-md:    0 8px 24px rgba(10,12,40,0.10);
+        --shadow-lg:    0 16px 48px rgba(10,12,40,0.14);
+        --shadow-glow:  0 10px 30px var(--glow);
+    }
+}
+ 
