@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
    <!-- Header -->
    <header class="header" id="header">
        <nav class="nav-container">
-           <a href="#" class="logo">
+           <a href="index.html" class="logo">
                <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
            </a>
 
@@ -54,18 +54,22 @@
                </button>
            </div>
 
+           <!-- FIX 1: All anchor links now point to index.html#section so navigation
+                works correctly when coming from (or going back to) the main page.
+                The "Achievements" link uses href="#" since we are already on this page. -->
            <div class="nav-links" id="nav-links">
-               <a href="#home" class="nav-link active">Home</a>
-               <a href="#about" class="nav-link">About</a>
-               <a href="#experience" class="nav-link">Experience</a>
-               <a href="#skills" class="nav-link">Skills</a>
-               <a href="#projects" class="nav-link">Projects</a>
-               <a href="achievements.html" class="nav-link">Achievements</a>
-               <a href="#contact" class="nav-link">Contact</a>
+               <a href="index.html#home" class="nav-link">Home</a>
+               <a href="index.html#about" class="nav-link">About</a>
+               <a href="index.html#experience" class="nav-link">Experience</a>
+               <a href="index.html#skills" class="nav-link">Skills</a>
+               <a href="index.html#projects" class="nav-link">Projects</a>
+               <a href="achievements.html" class="nav-link active">Achievements</a>
+               <a href="index.html#contact" class="nav-link">Contact</a>
                <a href="https://abhiverse-tex.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">Resume</a>
            </div>
        </nav>
    </header>
+
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
 
@@ -138,7 +142,7 @@
         </div>
     </footer>
 
-    <!-- Terminal (Optional, keeping consistent) -->
+    <!-- Terminal -->
     <div class="terminal-trigger">
         <button class="terminal-btn" id="terminal-toggle" aria-label="Open terminal">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
