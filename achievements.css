@@ -11,24 +11,27 @@
    global .section rule without touching styles.css.
    ========================================================================== */
 
+
 main .section {
     padding: 0 2rem !important;
 }
 
-/* First section clears the fixed header */
+/* FIX 9: Use --header-h token defined in styles.css :root instead of
+   a magic 80px. When main.js changes the header height (e.g. via
+   JS-driven resize), updating --header-h is the only change needed. */
 main > .section:first-of-type {
-    padding-top: 80px !important;
+    padding-top: calc(var(--header-h) + 1.5rem) !important;
     padding-bottom: 1rem !important;
 }
 
-/* Tighten the section header on this page */
 .section-header {
     margin-bottom: 2rem;
 }
 
 @media (max-width: 600px) {
     main > .section:first-of-type {
-        padding-top: 90px !important;
+        /* Extra buffer on small screens where the nav may wrap. */
+        padding-top: calc(var(--header-h) + 2rem) !important;
     }
 }
 
@@ -56,13 +59,12 @@ main > .section:first-of-type {
     overflow: hidden;
     box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.3));
     transition:
-        transform       0.3s ease,
-        border-color    0.3s ease,
-        box-shadow      0.3s ease,
+        transform        0.3s ease,
+        border-color     0.3s ease,
+        box-shadow       0.3s ease,
         background-color 0.3s ease;
 }
 
-/* Accent underline sweep */
 .stat-box::after {
     content: '';
     position: absolute;
@@ -70,7 +72,7 @@ main > .section:first-of-type {
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, var(--accent), #00ffcc);
+    background: linear-gradient(90deg, var(--accent), #00e8c8, #00ffcc);
     transform: scaleX(0);
     transition: transform 0.3s ease;
     border-radius: 0 0 16px 16px;
@@ -88,6 +90,8 @@ main > .section:first-of-type {
         0 0 20px var(--glow);
 }
 
+/* E7: Terminal-glow on the big stat numbers — crisp against dark bg,
+   carries the cyberpunk energy of the rest of the page. */
 .stat-number {
     display: block;
     font-family: 'JetBrains Mono', monospace;
@@ -96,13 +100,15 @@ main > .section:first-of-type {
     color: var(--accent);
     margin-bottom: 0.25rem;
     line-height: 1;
+    text-shadow: 0 0 22px rgba(0, 217, 181, 0.38);
+    transition: text-shadow 0.3s ease, color 0.3s ease;
 }
 
 .stat-text {
     font-size: 0.85rem;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.12em;
 }
 
 @media (max-width: 600px) {
@@ -149,13 +155,10 @@ main > .section:first-of-type {
 
 .filter-btn:hover {
     color: var(--fg);
-    /* Use the accent dim instead of a hardcoded white overlay —
-       works correctly on both dark and light backgrounds */
     background: var(--accent-dim);
 }
 
-/* Active state — accent fill. Use white text explicitly (not var(--bg))
-   because in light mode var(--bg) is a light grey, not a dark colour. */
+/* Active: white text explicitly — correct on both dark and light card bg. */
 .filter-btn.active {
     background: var(--accent);
     color: #ffffff;
@@ -187,8 +190,7 @@ main > .section:first-of-type {
     .cert-grid { grid-template-columns: 1fr; }
 }
 
-/* Cert cards are rendered by JS and may arrive after the IntersectionObserver
-   fires; force them visible so they never stay invisible. */
+/* Cards injected by JS after IntersectionObserver fires — force visible. */
 .cert-card.reveal {
     opacity: 1 !important;
     transform: translateY(0) !important;
@@ -199,22 +201,20 @@ main > .section:first-of-type {
    5. CERTIFICATE CARD
    ========================================================================== */
 
+/* FIX 10: Explicit fallback background before the color-mix() gradient
+   for browsers that don't support color-mix (Firefox < 113, Safari < 16.2).
+   Those browsers render the solid --card color; newer browsers get the gradient. */
 .cert-card {
-    /*
-     * Use a two-stop gradient between var(--card) values so the card
-     * shifts correctly in both modes. The second stop is var(--bg-secondary)
-     * with a slight alpha, which naturally darkens in dark mode and
-     * lightens in light mode.
-     */
+    background: var(--card);
     background: linear-gradient(
         145deg,
-        var(--card)                  0%,
+        var(--card) 0%,
         color-mix(in srgb, var(--bg-secondary) 80%, transparent) 100%
     );
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.75rem;
-    padding-top: 2rem;      /* clears the top ribbon */
+    padding-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -228,7 +228,8 @@ main > .section:first-of-type {
         background   0.3s ease;
 }
 
-/* ── Top ribbon ── */
+/* E3: Animated ribbon shimmer — background-position slides every 3s,
+   creating a premium sweep effect that loops seamlessly. */
 .cert-card::before {
     content: '';
     position: absolute;
@@ -236,13 +237,26 @@ main > .section:first-of-type {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--accent), #00ffcc, var(--accent));
+    background: linear-gradient(
+        90deg,
+        var(--accent),
+        #00e8c8,
+        #00ffcc,
+        #00e8c8,
+        var(--accent)
+    );
+    background-size: 300% 100%;
     border-radius: 16px 16px 0 0;
     z-index: 2;
-    transition: background 0.3s ease;
+    animation: ribbon-shimmer 4s linear infinite;
 }
 
-/* ── Background star watermark ── */
+@keyframes ribbon-shimmer {
+    0%   { background-position: 0%   center; }
+    100% { background-position: 300% center; }
+}
+
+/* Star watermark */
 .cert-card::after {
     content: '★';
     position: absolute;
@@ -257,13 +271,17 @@ main > .section:first-of-type {
     pointer-events: none;
 }
 
+/* FIX 11: Use var(--accent) with an alpha-modified approach via the
+   glow token instead of hardcoded hex — adapts to theme changes.
+   The border fully uses var(--accent) since border-opacity isn't a
+   standalone property; we add a slight transparency via box-shadow instead. */
 .cert-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(0, 217, 181, 0.4);    /* uses dark accent — overridden in light mode below */
-    /* Shadow uses CSS variables so it adapts */
+    border-color: var(--accent);
     box-shadow:
         var(--shadow-lg, 0 16px 48px rgba(0,0,0,0.4)),
-        0 0 30px var(--glow);
+        0 0 30px var(--glow),
+        inset 0 0 0 1px rgba(0, 217, 181, 0.08);
 }
 
 .cert-card:hover::after {
@@ -286,30 +304,27 @@ main > .section:first-of-type {
     gap: 0.5rem;
 }
 
-/* Issuer badge — gold/prestige colour token */
 .cert-issuer {
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.08em;
     font-weight: 700;
     border-radius: 4px;
     padding: 0.25rem 0.75rem;
-    /* Gold is a branding choice that should stay gold in both modes,
-       but the bg/border tint must be semi-transparent so it reads on
-       both the dark card and the white card. */
-    color: #c89b2a;                            /* slightly muted gold — AA on white */
+    /* Gold — intentional non-theme color, same in both modes.
+       Alpha bg + border so it reads on dark card AND white card. */
+    color: #c89b2a;
     background: rgba(200, 155, 42, 0.10);
     border: 1px solid rgba(200, 155, 42, 0.25);
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     white-space: nowrap;
 }
 
-/* Date chip */
 .cert-date {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     color: var(--muted);
-    background: var(--bg-secondary);           /* bg-secondary instead of raw bg — more contrast */
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
@@ -329,12 +344,11 @@ main > .section:first-of-type {
     transition: color 0.3s ease;
 }
 
-/* Certificate ID chip */
 .cert-id {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     color: var(--muted);
-    background: var(--bg-secondary);           /* same fix as cert-date */
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
@@ -345,7 +359,6 @@ main > .section:first-of-type {
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Card footer */
 .cert-footer {
     display: flex;
     justify-content: space-between;
@@ -358,7 +371,6 @@ main > .section:first-of-type {
     transition: border-color 0.3s ease;
 }
 
-/* Verify link */
 .cert-link {
     font-size: 0.85rem;
     color: var(--accent);
@@ -367,12 +379,11 @@ main > .section:first-of-type {
     align-items: center;
     gap: 0.5rem;
     font-weight: 500;
-    transition: color 0.3s ease, gap 0.3s ease;
+    transition: color 0.3s ease, gap 0.3s ease, filter 0.3s ease;
 }
 
 .cert-link:hover {
     gap: 0.75rem;
-    /* Use the CSS-var accent tinted brighter rather than a hardcoded hex */
     filter: brightness(1.15);
 }
 
@@ -390,89 +401,78 @@ main > .section:first-of-type {
 
 /* ══════════════════════════════════════════════════════════════════════════
    LIGHT MODE OVERRIDES
-   Every achievements-specific element that uses hardcoded colours or
-   dark-specific semi-transparent values needs a light-mode correction.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Stats bar ── */
 [data-theme="light"] .stat-box {
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-sm);
 }
-
 [data-theme="light"] .stat-box:hover {
     box-shadow: var(--shadow-md), 0 0 20px var(--glow);
     border-color: var(--accent);
 }
-
 [data-theme="light"] .stat-box::after {
-    background: linear-gradient(90deg, var(--accent), #00c4a0);
+    background: linear-gradient(90deg, var(--accent), #00b89e, #00c4a0);
 }
+/* In light mode the glow would wash out on white — drop it to zero. */
+[data-theme="light"] .stat-number {
+    color: var(--accent);
+    text-shadow: none;
+}
+[data-theme="light"] .stat-text { color: var(--muted); }
 
-[data-theme="light"] .stat-number { color: var(--accent); }
-[data-theme="light"] .stat-text   { color: var(--muted);  }
-
-
-/* ── Filter pill ── */
 [data-theme="light"] .filter-container {
     background: var(--bg-secondary);
     border-color: var(--border);
 }
-
-[data-theme="light"] .filter-btn {
-    color: var(--muted);
-}
-
+[data-theme="light"] .filter-btn { color: var(--muted); }
 [data-theme="light"] .filter-btn:hover {
     color: var(--fg);
     background: var(--accent-dim);
 }
-
 [data-theme="light"] .filter-btn.active {
     background: var(--accent);
     color: #ffffff;
     box-shadow: 0 0 15px var(--glow);
 }
 
-
-/* ── Certificate card ── */
 [data-theme="light"] .cert-card {
+    background: var(--card);
     background: linear-gradient(
         145deg,
         var(--card) 0%,
-        #f6f8fc 100%             /* clean cool-white second stop */
+        #f6f8fc 100%
     );
     border-color: var(--border);
     box-shadow: var(--shadow-sm);
 }
-
 [data-theme="light"] .cert-card:hover {
-    border-color: rgba(0, 158, 140, 0.4);
-    box-shadow: var(--shadow-lg), 0 0 30px var(--glow);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 30px var(--glow), inset 0 0 0 1px rgba(0, 158, 140, 0.08);
 }
-
-/* Ribbon adapts to light accent */
 [data-theme="light"] .cert-card::before {
-    background: linear-gradient(90deg, var(--accent), #00c4a0, var(--accent));
+    background: linear-gradient(
+        90deg,
+        var(--accent),
+        #00b89e,
+        #00c4a0,
+        #00b89e,
+        var(--accent)
+    );
+    background-size: 300% 100%;
+    /* Reuse the same keyframe — no duplication needed. */
 }
+[data-theme="light"] .cert-card::after { opacity: 0.06; }
+[data-theme="light"] .cert-card:hover::after { opacity: 0.18; }
 
-/* Star watermark — slightly more visible on white to maintain decoration */
-[data-theme="light"] .cert-card::after {
-    opacity: 0.06;
-}
-[data-theme="light"] .cert-card:hover::after {
-    opacity: 0.18;
-}
-
-/* Issuer badge — gold stays gold, but tint works on white bg */
+/* Darker gold for WCAG AA contrast on white card */
 [data-theme="light"] .cert-issuer {
-    color: #9a7510;                            /* darker gold for AA on white */
+    color: #9a7510;
     background: rgba(154, 117, 16, 0.10);
     border-color: rgba(154, 117, 16, 0.25);
 }
 
-/* Date / ID chips — use card surface so they pop on the white card */
 [data-theme="light"] .cert-date,
 [data-theme="light"] .cert-id {
     background: var(--bg-secondary);
@@ -480,10 +480,8 @@ main > .section:first-of-type {
     color: var(--muted);
 }
 
-[data-theme="light"] .cert-title   { color: var(--fg); }
-
+[data-theme="light"] .cert-title   { color: var(--fg);     }
 [data-theme="light"] .cert-footer  { border-top-color: var(--border); }
-
 [data-theme="light"] .cert-link    { color: var(--accent); }
 
 
@@ -499,10 +497,12 @@ main > .section:first-of-type {
         transition-duration: 0.01ms !important;
     }
 
-    .cert-card:hover {
-        transform: none;
+    /* Stop the ribbon shimmer and ribbon-slide */
+    .cert-card::before {
+        animation: none;
     }
 
+    .cert-card:hover,
     .stat-box:hover {
         transform: none;
     }
