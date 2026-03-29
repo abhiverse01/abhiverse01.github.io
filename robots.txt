@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow dev/build artifacts if you ever have them
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Sitemap location — helps Google and Bing discover all pages immediately
+Sitemap: https://abhiverse01.github.io/sitemap.xml
