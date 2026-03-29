@@ -13,34 +13,59 @@
     <link rel="stylesheet" href="achievements.css">
 </head>
 <body>
-    <!-- Neural Canvas (Consistent with main site) -->
-    <canvas id="neural-canvas"></canvas>
+   <!-- Neural Network Canvas -->
+   <canvas id="neural-canvas"></canvas>
 
-    <!-- Header -->
-    <header class="header scrolled" id="header">
-        <nav class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
-            </a>
+   <!-- Header -->
+   <header class="header" id="header">
+       <nav class="nav-container">
+           <a href="#" class="logo">
+               <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
+           </a>
 
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+           <div class="nav-controls">
+               <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme" aria-pressed="false">
+                   <span class="theme-toggle-track">
+                       <span class="theme-toggle-thumb">
+                           <!-- Moon icon (dark mode indicator) -->
+                           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                           </svg>
+                           <!-- Sun icon (light mode indicator) -->
+                           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                               <circle cx="12" cy="12" r="5"/>
+                               <line x1="12" y1="1" x2="12" y2="3"/>
+                               <line x1="12" y1="21" x2="12" y2="23"/>
+                               <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                               <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                               <line x1="1" y1="12" x2="3" y2="12"/>
+                               <line x1="21" y1="12" x2="23" y2="12"/>
+                               <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                           </svg>
+                       </span>
+                   </span>
+               </button>
 
-            <div class="nav-links" id="nav-links">
-                <a href="index.html#home" class="nav-link">Home</a>
-                <a href="index.html#about" class="nav-link">About</a>
-                <a href="index.html#experience" class="nav-link">Experience</a>
-                <a href="index.html#skills" class="nav-link">Skills</a>
-                <a href="index.html#projects" class="nav-link">Projects</a>
-                <a href="achievements.html" class="nav-link active">Achievements</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
-            </div>
-        </nav>
-    </header>
+               <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                   <span></span>
+                   <span></span>
+                   <span></span>
+               </button>
+           </div>
 
+           <div class="nav-links" id="nav-links">
+               <a href="#home" class="nav-link active">Home</a>
+               <a href="#about" class="nav-link">About</a>
+               <a href="#experience" class="nav-link">Experience</a>
+               <a href="#skills" class="nav-link">Skills</a>
+               <a href="#projects" class="nav-link">Projects</a>
+               <a href="achievements.html" class="nav-link">Achievements</a>
+               <a href="#contact" class="nav-link">Contact</a>
+               <a href="https://abhiverse-tex.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">Resume</a>
+           </div>
+       </nav>
+   </header>
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobile-overlay"></div>
 
