@@ -10,7 +10,7 @@
     --border:       #1f2937;
     --glow:         rgba(0, 217, 181, 0.4);
 
-    /* Shadow tokens (dark — very subtle; depth comes from bg contrast) */
+    /* Shadow tokens */
     --shadow-sm:    0 2px  8px rgba(0, 0, 0, 0.35);
     --shadow-md:    0 8px 24px rgba(0, 0, 0, 0.45);
     --shadow-lg:    0 16px 48px rgba(0, 0, 0, 0.55);
@@ -22,15 +22,43 @@
     /* Transition speed for theme switching */
     --theme-transition: 0.3s ease;
 
+    /* FIX 9: header height token — achievements.css references this
+       instead of a hardcoded 80px, so it stays in sync if JS changes it. */
+    --header-h: 72px;
+
     color-scheme: dark;
 }
 
 /* ========== Smooth Theme Transitions ==========
-   Applied globally so every property that uses a CSS var cross-fades.
-   transform/opacity are excluded to avoid killing scroll animations. */
-*,
-*::before,
-*::after {
+   FIX 1: Scope to layout elements only. Applying this to * causes
+   background-color to transition on :root itself (and canvas, SVG nodes)
+   during first paint, producing a flash-of-wrong-theme and layout jitter.
+   Pseudo-elements are excluded via explicit selectors below. ========== */
+body,
+.header,
+.nav-links,
+.logo,
+.btn,
+.nav-link,
+.skill-card,
+.project-card,
+.timeline-card,
+.contact-link,
+.contact-card,
+.credential-badge,
+.footer,
+.footer-social a,
+.terminal-btn,
+.terminal-modal,
+.terminal-header,
+.terminal-body,
+.terminal-input,
+.terminal-input-line,
+.about-image-frame,
+.mobile-overlay,
+.section-alt,
+.tag,
+.timeline-dot {
     transition:
         background-color var(--theme-transition),
         border-color     var(--theme-transition),
@@ -39,7 +67,7 @@
         outline-color    var(--theme-transition);
 }
 
-/* But keep transform/filter animations snappy — don't inherit the theme transition */
+/* Elements with their own carefully-tuned transitions get full control */
 .btn,
 .btn-primary,
 .btn-secondary,
@@ -61,15 +89,15 @@
 .theme-toggle .icon-sun,
 .theme-toggle .icon-moon,
 .theme-toggle-track {
-    /* These elements have their own carefully-tuned transitions;
-       the global rule above would override them so we restore them here. */
     transition-property: background-color, border-color, color, box-shadow,
                          outline-color, transform, opacity, filter, width;
 }
 
 
 /* ========== Base Styles ========== */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -92,6 +120,7 @@ body {
     color: var(--bg);
 }
 
+
 /* ========== Custom Scrollbar ========== */
 ::-webkit-scrollbar {
     width: 8px;
@@ -101,14 +130,22 @@ body {
     background: var(--bg);
 }
 
+/* FIX/E8: Scrollbar thumb now has a subtle teal tint at rest —
+   feels alive without shouting. Pure hover snap replaced with a
+   pre-tinted gradient so the transition is never jarring. */
 ::-webkit-scrollbar-thumb {
-    background: var(--border);
+    background: linear-gradient(
+        180deg,
+        var(--border),
+        color-mix(in srgb, var(--border) 55%, var(--accent))
+    );
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
+
 
 /* ========== Utility Classes ========== */
 .font-mono {
@@ -139,7 +176,6 @@ body {
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    /* No transition on opacity — instant canvas mode swap looks better */
     transition: opacity 0.6s ease;
 }
 
@@ -192,7 +228,6 @@ body {
     display: flex;
     align-items: center;
     gap: 2rem;
-    /* !! NO background set here — only the mobile drawer gets one !! */
 }
 
 .nav-link {
@@ -205,6 +240,8 @@ body {
     padding: 0.5rem 0;
 }
 
+/* E4: Nav underline now uses the same gradient as the cert ribbon —
+   cohesive design language across the whole portfolio. */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -212,8 +249,8 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease, background-color var(--theme-transition);
+    background: linear-gradient(90deg, var(--accent), #00e8c8, #00ffcc);
+    transition: width 0.3s ease;
 }
 
 .nav-link:hover,
@@ -296,7 +333,6 @@ input:focus-visible {
     border: none;
     cursor: pointer;
     padding: 5px;
-    /* No background — just the icon lines */
 }
 
 .mobile-menu-btn span {
@@ -325,7 +361,6 @@ input:focus-visible {
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 90;
-    /* No transition — overlay appears/disappears with the open class */
 }
 
 .mobile-overlay.open {
@@ -337,7 +372,7 @@ input:focus-visible {
         display: flex;
     }
 
-    /* Mobile DRAWER — this is where the white card background belongs */
+    /* Mobile DRAWER */
     .nav-links {
         position: fixed;
         top: 0;
@@ -345,7 +380,7 @@ input:focus-visible {
         width: 70%;
         max-width: 300px;
         height: 100vh;
-        background: var(--bg-secondary);   /* dark mode drawer bg */
+        background: var(--bg-secondary);
         flex-direction: column;
         padding: 5rem 2rem;
         gap: 1.5rem;
@@ -369,7 +404,9 @@ input:focus-visible {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 6rem 2rem;
+    /* FIX 2: Use the --header-h token so padding always clears the fixed nav,
+       including on small screens where the header wraps to a taller height. */
+    padding: calc(var(--header-h) + 4rem) 2rem 6rem;
 }
 
 .hero-content {
@@ -392,6 +429,8 @@ input:focus-visible {
     margin-bottom: 1.5rem;
 }
 
+/* E5: Pulse dot now uses box-shadow instead of transform:scale —
+   no layout jitter, more premium glow feel. */
 .hero-label::before {
     content: '';
     width: 8px;
@@ -403,8 +442,14 @@ input:focus-visible {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.5; transform: scale(1.2); }
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(0, 217, 181, 0);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 5px rgba(0, 217, 181, 0.25);
+    }
 }
 
 .hero-title {
@@ -415,6 +460,10 @@ input:focus-visible {
     color: var(--fg);
 }
 
+/* FIX 7: transform-origin no longer switches mid-transition.
+   Keep it always at 'left'; the underline grows left→right on hover
+   and shrinks left→right on mouseout (scaleX 1→0 from origin left
+   reads as a clean retract rather than a jarring flip). */
 .name-highlight {
     position: relative;
     color: var(--accent);
@@ -430,13 +479,12 @@ input:focus-visible {
     height: 2px;
     background: var(--accent);
     transform: scaleX(0);
-    transform-origin: right;
+    transform-origin: left;
     transition: transform 0.5s ease, background-color var(--theme-transition);
 }
 
 .name-highlight:hover::after {
     transform: scaleX(1);
-    transform-origin: left;
 }
 
 .hero-subtitle {
@@ -482,7 +530,6 @@ input:focus-visible {
     font-weight: 700;
     color: var(--accent);
     font-family: 'JetBrains Mono', monospace;
-    /* Counter animation — don't slow this with theme transition */
     transition: color var(--theme-transition);
 }
 
@@ -508,14 +555,19 @@ input:focus-visible {
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
+    /* FIX 12: position:relative so any absolutely-positioned descendant
+       is correctly contained within the header block. */
+    position: relative;
 }
 
+/* E6: Letter-spacing corrected to 0.15em for optical uniformity
+   at JetBrains Mono 0.85rem on high-DPI displays. */
 .section-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
     color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.15em;
     margin-bottom: 1rem;
 }
 
@@ -585,11 +637,13 @@ input:focus-visible {
     transform: scale(1.03);
 }
 
+/* FIX 8: overlay now references var(--accent-dim) so it automatically
+   adapts to both dark and light accent values — no separate override needed. */
 .about-image-frame::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 217, 181, 0.05), transparent 50%);
+    background: linear-gradient(135deg, var(--accent-dim), transparent 50%);
     pointer-events: none;
 }
 
@@ -672,7 +726,7 @@ input:focus-visible {
 
 
 /* ==========================================================================
-   TIMELINE (Experience / Achievements)
+   TIMELINE (Experience)
    ========================================================================== */
 .timeline {
     max-width: 900px;
@@ -705,6 +759,12 @@ input:focus-visible {
     padding-bottom: 3rem;
 }
 
+/* FIX 3: Last timeline item removes bottom padding so the guide line
+   doesn't visually overshoot the final dot. */
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
 @media (min-width: 768px) {
     .timeline-item {
         width: 50%;
@@ -728,15 +788,18 @@ input:focus-visible {
     height: 12px;
     background: var(--accent);
     border-radius: 50%;
-    border: 3px solid var(--bg);          /* punches through the guide line */
-    box-shadow: 0 0 0 0 rgba(0, 217, 181, 0.4);
-    transition: box-shadow 0.3s ease, background-color var(--theme-transition),
+    border: 3px solid var(--bg);
+    /* E2: Dual-ring sonar effect on hover — far more premium than single ring. */
+    box-shadow: 0 0 0 0 rgba(0, 217, 181, 0),
+                0 0 0 0 rgba(0, 217, 181, 0);
+    transition: box-shadow 0.4s ease, background-color var(--theme-transition),
                 border-color var(--theme-transition);
     z-index: 1;
 }
 
 .timeline-item:hover .timeline-dot {
-    box-shadow: 0 0 0 6px rgba(0, 217, 181, 0.2);
+    box-shadow: 0 0 0 4px rgba(0, 217, 181, 0.25),
+                0 0 0 8px rgba(0, 217, 181, 0.08);
 }
 
 @media (min-width: 768px) {
@@ -900,9 +963,12 @@ input:focus-visible {
     transition: background-color var(--theme-transition);
 }
 
+/* FIX/E1: Three-stop gradient adds a subtle mid-shimmer so the bar reads
+   as luminous rather than flat. The #00e8c8 mid-stop is the geometric mean
+   between the accent and the pure cyan — natural optical progression. */
 .skill-level-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), #00ffcc);
+    background: linear-gradient(90deg, var(--accent), #00e8c8 50%, #00f0cc);
     border-radius: 2px;
     transition: width 1s ease;
 }
@@ -911,6 +977,10 @@ input:focus-visible {
 /* ==========================================================================
    PROJECTS SECTION
    ========================================================================== */
+
+/* FIX 6: Breakpoint raised to 480px — catches all phones in the 401-479px
+   range that were previously rendering a single 350px column wider than
+   the viewport (causing horizontal scroll). */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -919,7 +989,7 @@ input:focus-visible {
     margin: 0 auto;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -1196,8 +1266,15 @@ input:focus-visible {
     box-shadow: var(--shadow-md), 0 0 12px rgba(0, 217, 181, 0.15);
 }
 
+/* FIX 13 (CSS side): Replace display:none/block toggle with
+   visibility + opacity + pointer-events so the closedown can be
+   animated. JS still adds/removes .open — but now the CSS does the
+   actual fading instead of blinking on/off. The slideUp keyframe fires
+   on open; closing lets opacity:0 + visibility:hidden fade out smoothly. */
 .terminal-modal {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
     position: fixed;
     bottom: 6rem;
     right: 2rem;
@@ -1209,16 +1286,22 @@ input:focus-visible {
     overflow: hidden;
     z-index: 60;
     box-shadow: var(--shadow-lg);
+    transform: translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease,
+                visibility 0s linear 0.25s,
+                background-color var(--theme-transition),
+                border-color var(--theme-transition);
 }
 
 .terminal-modal.open {
-    display: block;
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0);    }
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease,
+                visibility 0s linear 0s,
+                background-color var(--theme-transition),
+                border-color var(--theme-transition);
 }
 
 .terminal-header {
@@ -1236,7 +1319,6 @@ input:focus-visible {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    /* No transition — these are decorative OS dots */
 }
 
 .terminal-title {
@@ -1256,7 +1338,6 @@ input:focus-visible {
     transition: background-color var(--theme-transition);
 }
 
-/* Scrollbar inside terminal */
 .terminal-body::-webkit-scrollbar { width: 4px; }
 .terminal-body::-webkit-scrollbar-track  { background: transparent; }
 .terminal-body::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 2px; }
@@ -1298,9 +1379,6 @@ input:focus-visible {
 
 /* ==========================================================================
    THEME TOGGLE BUTTON
-   Pill-shaped slider with cross-fading sun/moon icons.
-   Lives inside .nav-links — inherits the flex row on desktop,
-   flex column on mobile drawer.
    ========================================================================== */
 .theme-toggle {
     position: relative;
@@ -1313,14 +1391,12 @@ input:focus-visible {
     padding: 0;
     color: var(--muted);
     flex-shrink: 0;
-    /* No transition here — it's a button wrapper */
 }
 
 .theme-toggle:hover {
     color: var(--fg);
 }
 
-/* Track */
 .theme-toggle-track {
     position: relative;
     width: 52px;
@@ -1329,11 +1405,10 @@ input:focus-visible {
     border: 1px solid var(--border);
     border-radius: 100px;
     flex-shrink: 0;
-    overflow: visible;          /* allow thumb shadow to bleed out */
+    overflow: visible;
     transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
-/* Thumb */
 .theme-toggle-thumb {
     position: absolute;
     top: 3px;
@@ -1348,11 +1423,9 @@ input:focus-visible {
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 background-color 0.35s ease;
-    /* Keep overflow hidden for icon clipping */
     overflow: hidden;
 }
 
-/* Icons inside the thumb */
 .theme-toggle .icon-sun,
 .theme-toggle .icon-moon {
     position: absolute;
@@ -1363,11 +1436,10 @@ input:focus-visible {
     pointer-events: none;
 }
 
-/* ── Dark mode state (default) — thumb left, moon visible ── */
+/* Dark mode state (default) — thumb left, moon visible */
 .theme-toggle .icon-sun  { opacity: 0; transform: rotate(90deg) scale(0.5); }
 .theme-toggle .icon-moon { opacity: 1; transform: rotate(0deg)  scale(1);   }
 
-/* Focus ring on the track */
 .theme-toggle:focus-visible .theme-toggle-track {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
@@ -1395,8 +1467,9 @@ input:focus-visible {
    REDUCED MOTION
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-    /* Kill all transitions and animations */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         transition-duration: 0.01ms !important;
         animation-duration:  0.01ms !important;
     }
@@ -1410,47 +1483,34 @@ input:focus-visible {
         animation: none;
         border-right: 2px solid var(--accent);
     }
-
-    @keyframes pulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-    }
 }
 
 
-
-
 /* ══════════════════════════════════════════════════════════════════════════
-   ██████████  LIGHT MODE OVERRIDES  ██████████
-   All selectors are scoped to [data-theme="light"] so they never
-   bleed into dark mode. Order mirrors the dark-mode sections above.
+   LIGHT MODE OVERRIDES
    ══════════════════════════════════════════════════════════════════════════ */
 
 [data-theme="light"] {
-    /* ── Palette ── */
     --bg:           #f0f2f8;
     --bg-secondary: #e4e8f2;
     --fg:           #0a0c14;
     --muted:        #5a6680;
-    --accent:       #009e8c;               /* darkened for WCAG AA on white  */
+    --accent:       #009e8c;
     --accent-dim:   rgba(0, 158, 140, 0.10);
     --card:         #ffffff;
     --border:       #ced3e3;
     --glow:         rgba(0, 158, 140, 0.28);
 
-    /* ── Shadows (carry depth that dark mode gets free from near-black bg) ── */
     --shadow-sm:    0 2px  8px rgba(10, 12, 40, 0.06);
     --shadow-md:    0 8px 24px rgba(10, 12, 40, 0.10);
     --shadow-lg:    0 16px 48px rgba(10, 12, 40, 0.14);
     --shadow-glow:  0 10px 30px var(--glow);
 
-    /* ── Canvas particle tint ── */
     --canvas-color: rgba(0, 158, 140, 0.18);
 
     color-scheme: light;
 }
 
-
-/* ── 1. Global base ── */
 [data-theme="light"] body {
     background: var(--bg);
     color: var(--fg);
@@ -1462,18 +1522,16 @@ input:focus-visible {
 }
 
 [data-theme="light"] ::-webkit-scrollbar-track       { background: var(--bg-secondary); }
-[data-theme="light"] ::-webkit-scrollbar-thumb       { background: var(--border); }
+[data-theme="light"] ::-webkit-scrollbar-thumb       {
+    background: linear-gradient(180deg, var(--border), color-mix(in srgb, var(--border) 60%, var(--accent)));
+}
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-
-/* ── 2. Neural canvas — lower opacity + multiply blend ── */
 [data-theme="light"] #neural-canvas {
     opacity: 0.30;
     mix-blend-mode: multiply;
 }
 
-
-/* ── 3. Header ── */
 [data-theme="light"] .header.scrolled {
     background: rgba(240, 242, 248, 0.92);
     backdrop-filter: blur(20px);
@@ -1483,17 +1541,11 @@ input:focus-visible {
 }
 
 [data-theme="light"] .logo { color: var(--fg); }
-
 [data-theme="light"] .nav-link        { color: var(--muted); }
 [data-theme="light"] .nav-link:hover,
 [data-theme="light"] .nav-link.active { color: var(--fg); }
 
-/* ━━━ NAVBAR BUG FIX ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   The white-box artefact was caused by applying background/border/shadow
-   to .nav-links unconditionally. On desktop .nav-links is just a flex row
-   with no background; only the mobile DRAWER needs a card surface.
-   Solution: scope the card styles to max-width: 768px only.
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* Mobile drawer in light mode */
 @media (max-width: 768px) {
     [data-theme="light"] .nav-links {
         background: var(--card);
@@ -1502,7 +1554,7 @@ input:focus-visible {
     }
 }
 
-/* On desktop, nav-links must be transparent in both modes */
+/* Desktop: always transparent */
 @media (min-width: 769px) {
     [data-theme="light"] .nav-links {
         background: transparent;
@@ -1518,8 +1570,6 @@ input:focus-visible {
 [data-theme="light"] button:focus-visible,
 [data-theme="light"] input:focus-visible   { outline-color: var(--accent); }
 
-
-/* ── 4. Buttons ── */
 [data-theme="light"] .btn-primary {
     background: var(--accent);
     color: #ffffff;
@@ -1543,27 +1593,20 @@ input:focus-visible {
     box-shadow: none;
 }
 
-
-/* ── 5. Hero ── */
 [data-theme="light"] .hero-label {
     background: var(--accent-dim);
     border-color: rgba(0, 158, 140, 0.25);
     color: var(--accent);
 }
 [data-theme="light"] .hero-label::before { background: var(--accent); }
-
 [data-theme="light"] .name-highlight       { color: var(--accent); }
 [data-theme="light"] .name-highlight::after { background: var(--accent); }
-
 [data-theme="light"] .typing-text {
     color: var(--accent);
     border-right-color: var(--accent);
 }
-
 [data-theme="light"] .hero-stats { border-top-color: var(--border); }
 
-
-/* ── 6. About ── */
 [data-theme="light"] .about-image-frame {
     border-color: var(--border);
     box-shadow: var(--shadow-md);
@@ -1572,16 +1615,11 @@ input:focus-visible {
     border-color: var(--accent);
     box-shadow: var(--shadow-lg);
 }
-
 [data-theme="light"] .about-photo {
     filter: grayscale(10%) contrast(1.04) brightness(1.02);
 }
 [data-theme="light"] .about-image-frame:hover .about-photo {
     filter: grayscale(0%) contrast(1.04) brightness(1.02);
-}
-
-[data-theme="light"] .about-image-frame::after {
-    background: linear-gradient(135deg, rgba(0, 158, 140, 0.04), transparent 60%);
 }
 
 [data-theme="light"] .credential-badge {
@@ -1595,16 +1633,14 @@ input:focus-visible {
     background: var(--accent-dim);
 }
 
-
-/* ── 7. Timeline ── */
 [data-theme="light"] .timeline::before { background: var(--border); }
-
 [data-theme="light"] .timeline-dot {
     background: var(--accent);
-    border-color: var(--bg);        /* page bg so dot "cuts through" the line */
+    border-color: var(--bg);
 }
 [data-theme="light"] .timeline-item:hover .timeline-dot {
-    box-shadow: 0 0 0 6px rgba(0, 158, 140, 0.18);
+    box-shadow: 0 0 0 4px rgba(0, 158, 140, 0.22),
+                0 0 0 8px rgba(0, 158, 140, 0.08);
 }
 
 [data-theme="light"] .timeline-card {
@@ -1616,19 +1652,15 @@ input:focus-visible {
     border-color: var(--accent);
     box-shadow: var(--shadow-md);
 }
-
 [data-theme="light"] .timeline-date    { color: var(--accent); }
 [data-theme="light"] .timeline-company { color: var(--muted);  }
 [data-theme="light"] .timeline-desc    { color: var(--muted);  }
-
 [data-theme="light"] .tag {
     background: var(--accent-dim);
     color: var(--accent);
     border: 1px solid rgba(0, 158, 140, 0.2);
 }
 
-
-/* ── 8. Skills ── */
 [data-theme="light"] .skill-category-btn {
     background: var(--card);
     border-color: var(--border);
@@ -1652,12 +1684,11 @@ input:focus-visible {
     border-color: var(--accent);
     box-shadow: var(--shadow-md), 0 0 20px rgba(0, 158, 140, 0.10);
 }
+/* Light-mode three-stop gradient — same feel, correct accent hue. */
 [data-theme="light"] .skill-level-fill {
-    background: linear-gradient(90deg, var(--accent), #00c4a0);
+    background: linear-gradient(90deg, var(--accent), #00b89e 50%, #00c4a0);
 }
 
-
-/* ── 9. Projects ── */
 [data-theme="light"] .project-card {
     background: var(--card);
     border-color: var(--border);
@@ -1667,12 +1698,10 @@ input:focus-visible {
     border-color: var(--accent);
     box-shadow: var(--shadow-lg), 0 0 24px rgba(0, 158, 140, 0.12);
 }
-
 [data-theme="light"] .project-image {
     background: linear-gradient(135deg, var(--bg-secondary), var(--bg));
 }
 [data-theme="light"] .project-image-pattern { opacity: 0.07; }
-
 [data-theme="light"] .project-logo {
     background: var(--accent-dim);
     border-color: rgba(0, 158, 140, 0.25);
@@ -1680,14 +1709,11 @@ input:focus-visible {
     box-shadow: var(--shadow-sm);
 }
 
-
-/* ── 10. Contact ── */
 [data-theme="light"] .contact-card {
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-md);
 }
-
 [data-theme="light"] .contact-link {
     background: var(--bg);
     border-color: var(--border);
@@ -1700,8 +1726,6 @@ input:focus-visible {
     box-shadow: var(--shadow-md);
 }
 
-
-/* ── 11. Footer ── */
 [data-theme="light"] .footer-social a {
     background: var(--card);
     border-color: var(--border);
@@ -1713,8 +1737,6 @@ input:focus-visible {
     background: var(--accent-dim);
 }
 
-
-/* ── 12. Terminal ── */
 [data-theme="light"] .terminal-btn {
     background: var(--card);
     border-color: var(--border);
@@ -1725,7 +1747,6 @@ input:focus-visible {
     color: var(--accent);
     box-shadow: var(--shadow-md);
 }
-
 [data-theme="light"] .terminal-modal {
     background: var(--card);
     border-color: var(--border);
@@ -1736,34 +1757,22 @@ input:focus-visible {
     border-bottom-color: var(--border);
 }
 [data-theme="light"] .terminal-body { background: var(--card); }
-
 [data-theme="light"] .terminal-body::-webkit-scrollbar-thumb {
     background: var(--border);
 }
 [data-theme="light"] .terminal-body::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
-
-/* Semantic terminal colours — shift to accessible hues on white */
 [data-theme="light"] .terminal-error   { color: #c0392b; }
 [data-theme="light"] .terminal-success { color: #27ae60; }
 [data-theme="light"] .terminal-info    { color: var(--accent); }
 
-
-/* ── 13. Theme toggle — light state ── */
-
-/* Thumb slides right */
-[data-theme="light"] .theme-toggle-thumb {
-    transform: translateX(24px);
-}
-
-/* Track gets a light-grey fill */
+/* Light theme toggle */
+[data-theme="light"] .theme-toggle-thumb { transform: translateX(24px); }
 [data-theme="light"] .theme-toggle-track {
     background: #e4e8f2;
     border-color: #ced3e3;
 }
-
-/* Swap icon visibility: moon out, sun in */
 [data-theme="light"] .theme-toggle .icon-sun  {
     opacity: 1;
     transform: rotate(0deg) scale(1);
@@ -1774,7 +1783,7 @@ input:focus-visible {
 }
 
 
-/* ── 14. System-preference fallback (no JS / no data-theme attribute) ── */
+/* ── System-preference fallback (no JS / no data-theme) ── */
 @media (prefers-color-scheme: light) {
     html:not([data-theme]) {
         --bg:           #f0f2f8;
