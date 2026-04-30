@@ -648,6 +648,7 @@ function animateCounter(element, target) {
 
 // ========== Skills Rendering ==========
 function renderSkills(category = 'all') {
+    if (!skillsGrid) return;
     const filtered = category === 'all' 
         ? skillsData 
         : skillsData.filter(s => s.category === category);
@@ -696,6 +697,7 @@ function getSkillIcon(type) {
 
 // ========== Projects Rendering ==========
 function renderProjects() {
+    if (!projectsGrid) return;
     projectsGrid.innerHTML = projectsData.map(project => `
         <div class="project-card reveal">
             <div class="project-image">
