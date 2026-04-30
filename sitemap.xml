@@ -18,4 +18,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Deployments page -->
+  <url>
+    <loc>https://abhiverse01.github.io/deployments.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
