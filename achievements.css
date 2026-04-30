@@ -502,8 +502,76 @@ main > .section:first-of-type {
         animation: none;
     }
 
+    .cert-card {
+        animation: none;
+    }
+
     .cert-card:hover,
     .stat-box:hover {
         transform: none;
     }
+}
+
+
+/* ==========================================================================
+   ENHANCEMENT: Stagger cert-card entrance with CSS animation
+   Cards are injected with 'visible' already set, so we use animation
+   (not transition) to get the entrance effect — animation fires on insert.
+   ========================================================================== */
+
+@keyframes cardFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.cert-card {
+    animation: cardFadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger delay for grid positions */
+.cert-card:nth-child(3n+1) { animation-delay: 0.04s; }
+.cert-card:nth-child(3n+2) { animation-delay: 0.10s; }
+.cert-card:nth-child(3n+3) { animation-delay: 0.16s; }
+
+/* Base entering state — only applies before visible class is set */
+.cert-card.reveal:not(.visible) {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* ==========================================================================
+   ENHANCEMENT: Filter pill active glow
+   ========================================================================== */
+.filter-btn.active {
+    box-shadow: 0 0 0 1px var(--accent), 0 0 12px rgba(0, 217, 181, 0.20);
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   ENHANCEMENT: Stats bar lift on hover
+   ========================================================================== */
+.stats-bar {
+    padding: 1.5rem 2rem;
+    gap: 2rem;
+}
+
+.stat-box {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 217, 181, 0.12);
+}
+
+/* ==========================================================================
+   ENHANCEMENT: Cert grid gap breathing room
+   ========================================================================== */
+.cert-grid {
+    gap: 1.5rem;
+    padding-bottom: 2rem;
 }
