@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Deployments | AbhiShek Shah</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="deployments.css">
+</head>
+<body>
+   <canvas id="neural-canvas"></canvas>
+
+   <header class="header" id="header">
+       <nav class="nav-container">
+           <a href="index.html" class="logo">
+               <span class="accent">&lt;</span>AbhiShek<span class="accent">/&gt;</span>
+           </a>
+
+           <div class="nav-controls">
+               <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme" aria-pressed="false">
+                   <span class="theme-toggle-track">
+                       <span class="theme-toggle-thumb">
+                           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                           </svg>
+                           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                               <circle cx="12" cy="12" r="5"/>
+                               <line x1="12" y1="1" x2="12" y2="3"/>
+                               <line x1="12" y1="21" x2="12" y2="23"/>
+                               <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                               <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                               <line x1="1" y1="12" x2="3" y2="12"/>
+                               <line x1="21" y1="12" x2="23" y2="12"/>
+                               <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                           </svg>
+                       </span>
+                   </span>
+               </button>
+               <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                   <span></span><span></span><span></span>
+               </button>
+           </div>
+
+           <div class="nav-links" id="nav-links">
+               <a href="index.html#home" class="nav-link">Home</a>
+               <a href="index.html#about" class="nav-link">About</a>
+               <a href="index.html#experience" class="nav-link">Experience</a>
+               <a href="index.html#skills" class="nav-link">Skills</a>
+               <a href="index.html#projects" class="nav-link">Projects</a>
+               <a href="deployments.html" class="nav-link active">Deployments</a>
+               <a href="achievements.html" class="nav-link">Achievements</a>
+               <a href="index.html#contact" class="nav-link">Contact</a>
+               <a href="https://abhiverse-tex.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">Resume</a>
+           </div>
+       </nav>
+   </header>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <main>
+        <!-- Hero Header -->
+        <section class="deploy-hero">
+            <div class="deploy-hero-content reveal">
+                <div class="hero-label">
+                    <span>Live in Production</span>
+                </div>
+                <h1 class="deploy-hero-title">
+                    Notable <span class="name-highlight">Deployments</span>
+                </h1>
+                <p class="deploy-hero-desc">
+                    Real products, live systems, and shipped code—from LLM-powered apps
+                    to interactive tools running in the wild.
+                </p>
+
+                <div class="deploy-stats reveal">
+                    <div class="deploy-stat">
+                        <span class="deploy-stat-num" data-target="12">0</span>
+                        <span class="deploy-stat-label">Live Deployments</span>
+                    </div>
+                    <div class="deploy-stat">
+                        <span class="deploy-stat-num" data-target="4">0</span>
+                        <span class="deploy-stat-label">Platforms Used</span>
+                    </div>
+                    <div class="deploy-stat">
+                        <span class="deploy-stat-num" data-target="100">0</span>
+                        <span class="deploy-stat-label">% Open Access</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating decoration circles -->
+            <div class="hero-orb orb-1"></div>
+            <div class="hero-orb orb-2"></div>
+            <div class="hero-orb orb-3"></div>
+        </section>
+
+        <!-- Filter Bar -->
+        <div class="deploy-filters reveal">
+            <div class="filter-wrap">
+                <button class="deploy-filter active" data-filter="all">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    All
+                </button>
+                <button class="deploy-filter" data-filter="ai">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                    AI / LLM
+                </button>
+                <button class="deploy-filter" data-filter="tool">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    Tools
+                </button>
+                <button class="deploy-filter" data-filter="research">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Research
+                </button>
+                <button class="deploy-filter" data-filter="game">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M7 12v-2m0 4v-2m5-2h2m-4 0h2"/></svg>
+                    Games
+                </button>
+            </div>
+        </div>
+
+        <!-- Deployments Grid -->
+        <section class="deploys-section">
+            <div class="deploys-grid" id="deploys-grid">
+
+
+                <!-- ThesisForge -->
+                <article class="deploy-card reveal" data-category="tool">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 190deg;">TF</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Tool</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">ThesisForge</h2>
+                            <p class="deploy-subtitle">Browser-Based LaTeX Thesis Generator</p>
+                            <p class="deploy-desc">
+                                Production-grade academic thesis generator that produces compilable LaTeX code with zero LaTeX knowledge required.
+                                Choose a template, fill a wizard, export a ready-to-compile .zip archive.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                    <span>Vercel</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    <span>LaTeX / Browser</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">LaTeX</span>
+                                <span class="tag">Academic</span>
+                                <span class="tag">No-Install</span>
+                                <span class="tag">Wizard UI</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://thesisforge-web.vercel.app" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BACKSTAX -->
+                <article class="deploy-card reveal" data-category="tool">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 25deg;">BX</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Tool</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">BACKSTAX</h2>
+                            <p class="deploy-subtitle">Real-Time World Intelligence Dashboard</p>
+                            <p class="deploy-desc">
+                                No backend. No cost. No noise. Pulls from six independent live data sources and renders everything
+                                on an interactive world map with a computed Global Threat Score from seismic, environmental, and market signals.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    <span>GitHub Pages</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10A15.3 15.3 0 0 1 8 12a15.3 15.3 0 0 1 4-10z"/></svg>
+                                    <span>Zero Backend</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">Dashboard</span>
+                                <span class="tag">Real-time</span>
+                                <span class="tag">Maps</span>
+                                <span class="tag">No-Backend</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://abhiverse01.github.io/backstax/" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Flappy Bird: God Mode -->
+                <article class="deploy-card reveal" data-category="game">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 50deg;">FB</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Game</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">Flappy Bird: God Mode</h2>
+                            <p class="deploy-subtitle">Physics-Based Reimplementation</p>
+                            <p class="deploy-desc">
+                                A modernised, physics-based reimplementation of the classic built with vanilla JavaScript and HTML5 Canvas.
+                                Features 60fps rendering, dynamic difficulty, particle systems, and clean OOP architecture.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    <span>GitHub Pages</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M7 12v-2m0 4v-2m5-2h2m-4 0h2"/></svg>
+                                    <span>Vanilla JS + Canvas</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Canvas</span>
+                                <span class="tag">60fps</span>
+                                <span class="tag">Particles</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://abhiverse01.github.io/Flappy-Bird/" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                Play Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TestMaker -->
+                <article class="deploy-card reveal" data-category="tool">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 320deg;">TM</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Tool</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">Test Maker Engine</h2>
+                            <p class="deploy-subtitle">Zero-Backend Quiz Platform</p>
+                            <p class="deploy-desc">
+                                Drop a JSON. Get a test. No accounts, no servers, no friction. A fully client-side quiz platform
+                                for educators and trainers — with shuffle, session resume, keyboard control, and rich results.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    <span>GitHub Pages</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10A15.3 15.3 0 0 1 8 12a15.3 15.3 0 0 1 4-10z"/></svg>
+                                    <span>Zero Dependencies</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">Quiz</span>
+                                <span class="tag">Education</span>
+                                <span class="tag">No-Backend</span>
+                                <span class="tag">Keyboard</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://abhiverse01.github.io/test-maker/" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TitanML -->
+                <article class="deploy-card reveal" data-category="ai">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 265deg;">TN</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">AI / LLM</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">TitanML</h2>
+                            <p class="deploy-subtitle">AI Knowledge Graph Engine</p>
+                            <p class="deploy-desc">
+                                Zero-dependency, physics-powered AI knowledge graph. Transforms static AI documentation into a living,
+                                explorable ecosystem with force-directed simulation, directional arrows, and real-time canvas rendering.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    <span>GitHub Pages</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+                                    <span>Zero Dependencies</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">Knowledge Graph</span>
+                                <span class="tag">Physics Sim</span>
+                                <span class="tag">Canvas</span>
+                                <span class="tag">AI</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://abhiverse01.github.io/titanML/" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SAMS -->
+                <article class="deploy-card reveal" data-category="tool">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 130deg;">SM</div>
+                                <div class="deploy-pulse-ring pulse-wip"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-wip">
+                                    <span class="badge-dot dot-wip"></span>Coming Soon
+                                </span>
+                                <span class="deploy-badge badge-category">Tool</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">SAMS</h2>
+                            <p class="deploy-subtitle">Student Account Management System</p>
+                            <p class="deploy-desc">
+                                Lightweight Python CLI application for managing student accounts, grades, and academic records.
+                                Uses CSV files for zero-dependency data storage — perfect for small-scale educational setups or learning projects.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                                    <span>Python CLI</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                    <span>CSV Storage</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">CLI</span>
+                                <span class="tag">Education</span>
+                                <span class="tag">Lightweight</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <span class="deploy-link deploy-link-private">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                                Deployment Link Soon
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- CodeBeing -->
+                <article class="deploy-card reveal" data-category="ai">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 168deg;">CB</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">AI / LLM</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">CodeBeing</h2>
+                            <p class="deploy-subtitle">Natural Language → Python Code</p>
+                            <p class="deploy-desc">
+                                Fine-tuned Llama-2 7B on GitHub code datasets to translate plain English into working Python. 
+                                Ships with a React frontend and serverless API on Vercel.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                    <span>Vercel</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <span>Llama-2 7B</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10A15.3 15.3 0 0 1 8 12a15.3 15.3 0 0 1 4-10z"/></svg>
+                                    <span>React Frontend</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">LLM</span>
+                                <span class="tag">Fine-tuning</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://projectcodebeing.vercel.app" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Live
+                            </a>
+                            <a href="https://github.com/abhiverse01/project-codebeing" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-ghost">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                Source
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- AbhiVerse Resume -->
+                <article class="deploy-card reveal" data-category="tool">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 210deg;">AV</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Tool</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">AbhiVerse Resume</h2>
+                            <p class="deploy-subtitle">Interactive LaTeX Resume Site</p>
+                            <p class="deploy-desc">
+                                A live-rendered version of my professional resume built with LaTeX and deployed as an interactive web experience. 
+                                Clean, downloadable, always up-to-date.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                    <span>Vercel</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    <span>LaTeX</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">LaTeX</span>
+                                <span class="tag">PDF</span>
+                                <span class="tag">Portfolio</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://abhiverse-tex.vercel.app" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Live
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Recommendation System -->
+                <article class="deploy-card reveal" data-category="ai">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 280deg;">RS</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-production">
+                                    <span class="badge-dot"></span>Production
+                                </span>
+                                <span class="deploy-badge badge-category">AI / LLM</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">Recommendation Engine</h2>
+                            <p class="deploy-subtitle">Production ML Microservice</p>
+                            <p class="deploy-desc">
+                                Personalized recommendation engine deployed on Digital Ocean microservices architecture. 
+                                Handles real traffic with Docker containers, Kafka event streams, and Kubernetes orchestration.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                    <span>Digital Ocean</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                                    <span>Docker + K8s</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    <span>Kafka Streams</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">RecSys</span>
+                                <span class="tag">Microservices</span>
+                                <span class="tag">Kafka</span>
+                                <span class="tag">Docker</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <span class="deploy-link deploy-link-private">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                Private / Internal
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TFX Iris MLOps -->
+                <article class="deploy-card reveal" data-category="research">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 45deg;">TX</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Research</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">TFX Iris MLOps Pipeline</h2>
+                            <p class="deploy-subtitle">Automated ML with CI/CD</p>
+                            <p class="deploy-desc">
+                                End-to-end MLOps pipeline using TensorFlow Extended demonstrating automated model training, 
+                                validation, and continuous deployment through GitHub Actions.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    <span>GitHub Actions</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <span>TensorFlow Extended</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">TFX</span>
+                                <span class="tag">MLOps</span>
+                                <span class="tag">CI/CD</span>
+                                <span class="tag">TensorFlow</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://github.com/abhiverse01/tfx-iris-project" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Repo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Space-Sim Game -->
+                <article class="deploy-card reveal" data-category="game">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 230deg;">SS</div>
+                                <div class="deploy-pulse-ring"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-live">
+                                    <span class="badge-dot"></span>Live
+                                </span>
+                                <span class="deploy-badge badge-category">Game</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">Space-Sim</h2>
+                            <p class="deploy-subtitle">Gravitational Body Simulation</p>
+                            <p class="deploy-desc">
+                                Python simulation of gravitational interactions between celestial bodies — Sun, Earth, and Moon — 
+                                using real physics equations and Pygame rendering.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    <span>GitHub</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+                                    <span>Pygame + Physics</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">PyGame</span>
+                                <span class="tag">Physics</span>
+                                <span class="tag">Simulation</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <a href="https://github.com/abhiverse01/Space-Sim" target="_blank" rel="noopener noreferrer" class="deploy-link deploy-link-primary">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                View Repo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ActFormers Research -->
+                <article class="deploy-card reveal" data-category="research">
+                    <div class="deploy-card-glow"></div>
+                    <div class="deploy-card-inner">
+                        <div class="deploy-card-top">
+                            <div class="deploy-logo-wrap">
+                                <div class="deploy-logo" style="--logo-hue: 340deg;">AF</div>
+                                <div class="deploy-pulse-ring pulse-wip"></div>
+                            </div>
+                            <div class="deploy-badges">
+                                <span class="deploy-badge badge-wip">
+                                    <span class="badge-dot dot-wip"></span>In Progress
+                                </span>
+                                <span class="deploy-badge badge-category">Research</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-body">
+                            <h2 class="deploy-title">ActFormers</h2>
+                            <p class="deploy-subtitle">Action-Predicting Transformer Architecture</p>
+                            <p class="deploy-desc">
+                                Original research modifying transformer architecture to predict actions rather than just next tokens. 
+                                Explores the boundary between language models and decision-making agents.
+                            </p>
+
+                            <div class="deploy-meta-row">
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                                    <span>Active Research</span>
+                                </div>
+                                <div class="deploy-meta-item">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <span>Transformers</span>
+                                </div>
+                            </div>
+
+                            <div class="deploy-tags">
+                                <span class="tag">Transformers</span>
+                                <span class="tag">Research</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">NLP</span>
+                            </div>
+                        </div>
+
+                        <div class="deploy-card-footer">
+                            <span class="deploy-link deploy-link-private">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                                Ongoing — Stay tuned
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="deploy-cta reveal">
+            <div class="cta-inner">
+                <div class="cta-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </div>
+                <h2>More projects on GitHub</h2>
+                <p>Browse the full catalogue of repositories, notebooks, and experiments.</p>
+                <a href="https://github.com/abhiverse01?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    View All Repositories
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="accent">&lt;</span>AbhiShek Shah<span class="accent">/&gt;</span>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/theabhishekshah/" target="_blank" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/abhiverse01" target="_blank" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">Designed & Built by AbhiShek Shah. 2024 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Terminal Easter Egg -->
+    <div class="terminal-trigger">
+        <button class="terminal-btn" id="terminal-toggle" aria-label="Open terminal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"/>
+                <line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="terminal-modal" id="terminal-modal">
+        <div class="terminal-header">
+            <div class="terminal-dot" style="background:#ff5f56;"></div>
+            <div class="terminal-dot" style="background:#ffbd2e;"></div>
+            <div class="terminal-dot" style="background:#27ca40;"></div>
+            <span class="terminal-title">terminal</span>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+            <div class="terminal-line"><span class="terminal-prompt">$</span> Welcome to AbhiShek's terminal!</div>
+            <div class="terminal-line terminal-muted">Type 'help' to see available commands.</div>
+        </div>
+        <div class="terminal-input-line">
+            <span class="terminal-prompt">$</span>
+            <input type="text" class="terminal-input" id="terminal-input" placeholder="Type a command..." autocomplete="off">
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="deployments.js"></script>
+</body>
+</html>
+
+    <script src="main.js"></script>
+    <script src="deployments.js"></script>
+</body>
+</html>
